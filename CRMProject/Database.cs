@@ -13,7 +13,7 @@ namespace CRMProject
         SqlConnection conn;
         public Database()
         {
-            conn = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\ipd\Desktop\WpfApplicationTest\WpfApplicationTest\TestDB.mdf;Integrated Security=True;Connect Timeout=30");
+            conn = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\ipd\Documents\c_sharp_fundamental-2017\WpfApplicationTest\WpfApplicationTest\TestDB.mdf;Integrated Security=True;Connect Timeout=30");
             conn.Open();
         }
 

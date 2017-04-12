@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Controls.Ribbon;
+using System.Data.SqlClient;
 
 namespace CRMProject
 {
@@ -21,14 +22,27 @@ namespace CRMProject
     /// </summary>
     public partial class MainWindow : RibbonWindow
     {
+        Database DB;
         public MainWindow()
         {
+            try
+            {
+                DB = new Database();
+                InitializeComponent();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("There is a problem in Connecting to the DateBase!", "Connection Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
             InitializeComponent();
         }
 
-        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        private void btnAddEmployee_Click(object sender, RoutedEventArgs e)
         {
-           
+            
+
         }
+
+      
     }
 }
