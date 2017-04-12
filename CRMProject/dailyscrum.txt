@@ -6,4 +6,9 @@
 1. I have already created a database in Azure and be success to make a connection 
 2. In next 24 hours I am going to add all tables that I need in database and start to
 develope the login form
- 
+3.I will go on looking for ribbon tutorial
+*************************** Thired Day *********************************
+1. I have already create one table but not tested yet and do the first riboon test and 
+it works very well
+2.In net 24 hours i will go on creating the other tables and test them
+3.
