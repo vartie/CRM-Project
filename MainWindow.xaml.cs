@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Windows.Controls.Ribbon;
 using System.Data.SqlClient;
 using Microsoft.Win32;
+using System.Text.RegularExpressions;
 
 namespace CRMProject
 {
@@ -36,6 +37,11 @@ namespace CRMProject
                 MessageBox.Show("There is a problem in Connecting to the DateBase!", "Connection Error", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             InitializeComponent();
+        }
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
 
         private void btnAddEmployee_Click(object sender, RoutedEventArgs e)
