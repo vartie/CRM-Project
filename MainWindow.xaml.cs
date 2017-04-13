@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Controls.Ribbon;
 using System.Data.SqlClient;
+using Microsoft.Win32;
 
 namespace CRMProject
 {
@@ -27,7 +28,7 @@ namespace CRMProject
         {
             try
             {
-                DB = new Database();
+               // DB = new Database();
                 InitializeComponent();
             }
             catch (SqlException ex)
@@ -43,6 +44,17 @@ namespace CRMProject
 
         }
 
-      
+        private void btnEmployeeUploadImage_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog op = new OpenFileDialog();
+            op.Title = "Select a picture";
+            op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
+              "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
+              "Portable Network Graphic (*.png)|*.png";
+            if (op.ShowDialog() == true)
+            {
+               imgEmployeeImage.Source = new BitmapImage(new Uri(op.FileName));
+            }
+        }
     }
 }

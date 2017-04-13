@@ -86,30 +86,32 @@
             <TabItem Header="Employees" Width="150" FontSize="15" >
                 <Grid>
                     <TabControl>
-                        <TabItem Header="Add">
+                        <TabItem Header="Home" Width="100">
+
+                        </TabItem>
+                        <TabItem Header="Monitor" Width="100"/>
+                        <TabItem Header="Add" Width="100">
                             <Grid>
-                                <Label x:Name="lblFname" Content="First Name:" HorizontalAlignment="Left" Margin="23,24,0,0" VerticalAlignment="Top" Width="87"/>
-                                <TextBox x:Name="tbFname" HorizontalAlignment="Left" Height="23" Margin="115,27,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166"/>
-                                <Label x:Name="lblLname" Content="Last name" HorizontalAlignment="Left" Margin="23,55,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.5,-0.577" Width="87"/>
-                                <TextBox x:Name="tbLname" HorizontalAlignment="Left" Height="23" Margin="115,58,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166"/>
-                                <Label x:Name="lblBirthDate" Content="Birth Date:" HorizontalAlignment="Left" Margin="23,86,0,0" VerticalAlignment="Top" Width="87"/>
-                                <TextBox x:Name="tbBirthdate" HorizontalAlignment="Left" Height="23" Margin="115,89,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166"/>
-                                <DatePicker x:Name="dpBirthDateEmployee" HorizontalAlignment="Left" Margin="286,87,0,0" VerticalAlignment="Top" Width="34" Height="26" />
-                                <Label x:Name="lblHireddate" Content="Hired Date:" HorizontalAlignment="Left" Margin="23,117,0,0" VerticalAlignment="Top" Width="87"/>
-                                <TextBox x:Name="tbHireddate" HorizontalAlignment="Left" Height="23" Margin="115,120,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166"/>
-                                <DatePicker x:Name="dpHiredDateEmployee" HorizontalAlignment="Left" Margin="286,117,0,0" VerticalAlignment="Top" Width="34" Height="26" />
-                                <Label x:Name="lblStreetNo" Content="Street No.:" HorizontalAlignment="Left" Margin="23,148,0,0" VerticalAlignment="Top" Width="87"/>
-                                <TextBox x:Name="tbStreetNo" HorizontalAlignment="Left" Height="23" Margin="115,148,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166"/>
-                                <Label x:Name="lblStreetName" Content="Street Name:" HorizontalAlignment="Left" Margin="23,176,0,0" VerticalAlignment="Top" Width="87"/>
-                                <TextBox x:Name="tbStreetName" HorizontalAlignment="Left" Height="23" Margin="115,176,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166"/>
-                                <Label x:Name="lblAppNo" Content="App No. :" HorizontalAlignment="Left" Margin="23,204,0,0" VerticalAlignment="Top" Width="87" RenderTransformOrigin="0.517,1.385"/>
-                                <TextBox x:Name="tbAppNo" HorizontalAlignment="Left" Height="23" Margin="115,207,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166"/>
-                                <Label x:Name="lblMunicipality" Content="Municipality:" HorizontalAlignment="Left" Margin="23,235,0,0" VerticalAlignment="Top" Width="87" RenderTransformOrigin="0.517,1.385"/>
-                                <TextBox x:Name="tbMunicipality" HorizontalAlignment="Left" Height="23" Margin="115,235,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166"/>
-                                <Label x:Name="lblCity" Content="city:" HorizontalAlignment="Left" Margin="23,260,0,0" VerticalAlignment="Top" Width="87" RenderTransformOrigin="0.517,1.385"/>
-                                <TextBox x:Name="tbMunicipality_Copy" HorizontalAlignment="Left" Height="23" Margin="115,263,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166"/>
-                                <Label x:Name="lblProvince" Content="Province:" HorizontalAlignment="Left" Margin="23,286,0,0" VerticalAlignment="Top" Width="87" RenderTransformOrigin="0.517,1.385"/>
-                                <ComboBox x:Name="cmbProvince" HorizontalAlignment="Left" Margin="115,291,0,0" VerticalAlignment="Top" Width="166">
+                                <Label x:Name="lblFname" Content="First Name:" HorizontalAlignment="Left" Margin="23,40,0,0" VerticalAlignment="Top" Width="87"/>
+                                <TextBox x:Name="tbFname" HorizontalAlignment="Left" Height="23" Margin="133,43,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166"/>
+                                <Label x:Name="lblLname" Content="Last name" HorizontalAlignment="Left" Margin="23,81,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.5,-0.577" Width="87"/>
+                                <TextBox x:Name="tbLname" HorizontalAlignment="Left" Height="23" Margin="133,84,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166"/>
+                                <Label x:Name="lblBirthDate" Content="Birth Date:" HorizontalAlignment="Left" Margin="23,124,0,0" VerticalAlignment="Top" Width="87"/>
+                                <TextBox x:Name="tbBirthdate" HorizontalAlignment="Left" Height="23" Margin="133,127,0,0" TextWrapping="Wrap" Text="DD/MM/YYYY" VerticalAlignment="Top" Width="166" />
+                                <Label x:Name="lblHireddate" Content="Hired Date:" HorizontalAlignment="Left" Margin="23,163,0,0" VerticalAlignment="Top" Width="87"/>
+                                <TextBox x:Name="tbHireddate" HorizontalAlignment="Left" Height="23" Margin="133,166,0,0" TextWrapping="Wrap" Text="DD/MM/YYYY" VerticalAlignment="Top" Width="166"/>
+                                <Label x:Name="lblStreetNo" Content="Street No.:" HorizontalAlignment="Left" Margin="23,206,0,0" VerticalAlignment="Top" Width="87"/>
+                                <TextBox x:Name="tbStreetNo" HorizontalAlignment="Left" Height="23" Margin="133,206,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166"/>
+                                <Label x:Name="lblStreetName" Content="Street Name:" HorizontalAlignment="Left" Margin="23,250,0,0" VerticalAlignment="Top" Width="105"/>
+                                <TextBox x:Name="tbStreetName" HorizontalAlignment="Left" Height="23" Margin="133,250,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166"/>
+                                <Label x:Name="lblAppNo" Content="App No. :" HorizontalAlignment="Left" Margin="23,284,0,0" VerticalAlignment="Top" Width="87" RenderTransformOrigin="0.517,1.385"/>
+                                <TextBox x:Name="tbAppNo" HorizontalAlignment="Left" Height="23" Margin="133,287,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166"/>
+                                <Label x:Name="lblMunicipality" Content="Municipality:" HorizontalAlignment="Left" Margin="23,325,0,0" VerticalAlignment="Top" Width="105" RenderTransformOrigin="0.517,1.385"/>
+                                <TextBox x:Name="tbMunicipality" HorizontalAlignment="Left" Height="23" Margin="133,325,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166"/>
+                                <Label x:Name="lblCity" Content="city:" HorizontalAlignment="Left" Margin="23,366,0,0" VerticalAlignment="Top" Width="87" RenderTransformOrigin="0.517,1.385"/>
+                                <TextBox x:Name="tbMunicipality_Copy" HorizontalAlignment="Left" Height="23" Margin="133,369,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166"/>
+                                <Label x:Name="lblProvince" Content="Province:" HorizontalAlignment="Left" Margin="23,408,0,0" VerticalAlignment="Top" Width="87" RenderTransformOrigin="0.517,1.385"/>
+                                <ComboBox x:Name="cmbProvince" HorizontalAlignment="Left" Margin="133,413,0,0" VerticalAlignment="Top" Width="166" SelectedIndex="0">
                                     <ComboBoxItem Content="Ontario(ON)" HorizontalAlignment="Left" Width="160"/>
                                     <ComboBoxItem Content="Quebec(QC)" HorizontalAlignment="Left" Width="160"/>
                                     <ComboBoxItem Content="Nova Scotia(NS)" HorizontalAlignment="Left" Width="160"/>
@@ -121,12 +123,12 @@
                                     <ComboBoxItem Content="Alberta(AB)" HorizontalAlignment="Left" Width="160"/>
                                     <ComboBoxItem Content="Newfoundland(NL)" HorizontalAlignment="Left" Width="160"/>
                                 </ComboBox>
-                                <Label x:Name="lblPostalcode" Content="Postalcode:" HorizontalAlignment="Left" Margin="339,24,0,0" VerticalAlignment="Top" Width="87" RenderTransformOrigin="0.517,1.385"/>
-                                <TextBox x:Name="tbPostalcode" HorizontalAlignment="Left" Height="23" Margin="431,27,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166"/>
-                                <Label x:Name="lblCountry" Content="Country:" HorizontalAlignment="Left" Margin="339,55,0,0" VerticalAlignment="Top" Width="87" RenderTransformOrigin="0.517,1.385"/>
-                                <TextBox x:Name="tbCountry" HorizontalAlignment="Left" Height="23" Margin="431,58,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166"/>
-                                <Label x:Name="lblRank" Content="Rank:" HorizontalAlignment="Left" Margin="339,86,0,0" VerticalAlignment="Top" Width="87" RenderTransformOrigin="0.517,1.385"/>
-                                <ComboBox HorizontalAlignment="Left" Margin="431,90,0,0" VerticalAlignment="Top" Width="44">
+                                <Label x:Name="lblPostalcode" Content="Postalcode:" HorizontalAlignment="Left" Margin="359,44,0,0" VerticalAlignment="Top" Width="87" RenderTransformOrigin="0.517,1.385"/>
+                                <TextBox x:Name="tbPostalcode" HorizontalAlignment="Left" Height="23" Margin="451,47,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166"/>
+                                <Label x:Name="lblCountry" Content="Country:" HorizontalAlignment="Left" Margin="359,91,0,0" VerticalAlignment="Top" Width="87" RenderTransformOrigin="0.517,1.385"/>
+                                <TextBox x:Name="tbCountry" HorizontalAlignment="Left" Height="23" Margin="451,94,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166"/>
+                                <Label x:Name="lblRank" Content="Rank:" HorizontalAlignment="Left" Margin="359,134,0,0" VerticalAlignment="Top" Width="87" RenderTransformOrigin="0.517,1.385"/>
+                                <ComboBox HorizontalAlignment="Left" Margin="451,138,0,0" VerticalAlignment="Top" Width="44" SelectedIndex="0">
                                     <ComboBoxItem Content="A" HorizontalAlignment="Left" Width="30"/>
                                     <ComboBoxItem Content="B" HorizontalAlignment="Left" Width="30"/>
                                     <ComboBoxItem Content="C" HorizontalAlignment="Left" Width="30"/>
@@ -134,26 +136,31 @@
                                     <ComboBoxItem Content="E" HorizontalAlignment="Left" Width="30"/>
                                     <ComboBoxItem Content="F" HorizontalAlignment="Left" Width="30"/>
                                 </ComboBox>
-                                <Label x:Name="lblTitle" Content="Title:" HorizontalAlignment="Left" Margin="339,117,0,0" VerticalAlignment="Top" Width="87" RenderTransformOrigin="0.517,1.385"/>
-                                <ComboBox x:Name="cmbTitle" HorizontalAlignment="Left" Margin="431,121,0,0" VerticalAlignment="Top" Width="166">
+                                <Label x:Name="lblTitle" Content="Title:" HorizontalAlignment="Left" Margin="359,181,0,0" VerticalAlignment="Top" Width="87" RenderTransformOrigin="0.517,1.385"/>
+                                <ComboBox x:Name="cmbTitle" HorizontalAlignment="Left" Margin="451,185,0,0" VerticalAlignment="Top" Width="166" SelectedIndex="0">
                                     <ComboBoxItem Content="IT Administrator" HorizontalAlignment="Left" Width="164"/>
                                     <ComboBoxItem Content="Consultant" HorizontalAlignment="Left" Width="164"/>
                                     <ComboBoxItem Content="Marketing Advisor" HorizontalAlignment="Left" Width="164"/>
                                     <ComboBoxItem Content="Dep. Manager" HorizontalAlignment="Left" Width="164"/>
                                     <ComboBoxItem Content="Acountant" HorizontalAlignment="Left" Width="164"/>
                                 </ComboBox>
-                                <Label x:Name="lblSalary" Content="salary(p/h):" HorizontalAlignment="Left" Margin="339,148,0,0" VerticalAlignment="Top" Width="87" RenderTransformOrigin="0.517,1.385"/>
-                                <TextBox x:Name="tbSalary" HorizontalAlignment="Left" Height="23" Margin="431,148,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166"/>
-                                <Label x:Name="lblUsername" Content="Username:" HorizontalAlignment="Left" Margin="339,176,0,0" VerticalAlignment="Top" Width="87" RenderTransformOrigin="0.517,1.385"/>
-                                <TextBox x:Name="tbUsername" HorizontalAlignment="Left" Height="23" Margin="431,176,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166"/>
-                                <Label x:Name="lblPassword" Content="Password:" HorizontalAlignment="Left" Margin="339,204,0,0" VerticalAlignment="Top" Width="87" RenderTransformOrigin="0.517,1.385"/>
-                                <TextBox x:Name="tbPassword" HorizontalAlignment="Left" Height="23" Margin="431,207,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166"/>
-                                <Button x:Name="btnAddEmployee" Content="Add Employee" HorizontalAlignment="Left" Margin="351,245,0,0" VerticalAlignment="Top" Width="246" Height="67" Click="btnAddEmployee_Click"/>
+                                <Label x:Name="lblSalary" Content="salary(p/h):" HorizontalAlignment="Left" Margin="359,226,0,0" VerticalAlignment="Top" Width="87" RenderTransformOrigin="0.517,1.385"/>
+                                <TextBox x:Name="tbSalary" HorizontalAlignment="Left" Height="23" Margin="451,226,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166"/>
+                                <Label x:Name="lblUsername" Content="Username:" HorizontalAlignment="Left" Margin="359,266,0,0" VerticalAlignment="Top" Width="87" RenderTransformOrigin="0.517,1.385"/>
+                                <TextBox x:Name="tbUsername" HorizontalAlignment="Left" Height="23" Margin="451,266,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166"/>
+                                <Label x:Name="lblPassword" Content="Password:" HorizontalAlignment="Left" Margin="359,310,0,0" VerticalAlignment="Top" Width="87" RenderTransformOrigin="0.517,1.385"/>
+                                <TextBox x:Name="tbPassword" HorizontalAlignment="Left" Height="23" Margin="451,313,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166"/>
+                                <Button x:Name="btnAddEmployee" Content="Add Employee" HorizontalAlignment="Left" Margin="371,377,0,0" VerticalAlignment="Top" Width="246" Height="67" Click="btnAddEmployee_Click"/>
+
+                                <Border Name="brdEmployeeImage" BorderThickness="2" BorderBrush="#FF000000" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="687,44,0,0" Height="151.2" Width="151.2">
+                                    <Image Name="imgEmployeeImage" HorizontalAlignment="Left" VerticalAlignment="Stretch" Stretch="Fill" Margin="-1.6,-1.6,-2.2,1.2" Width="151" Source="Images/personal.png"/>
+                                </Border>
+                                <Button x:Name="btnEmployeeUploadImage" Content="Upload Image" HorizontalAlignment="Left" Margin="687,211,0,0" VerticalAlignment="Top" Width="151" Height="38" Click="btnEmployeeUploadImage_Click"/>
 
                             </Grid>
                         </TabItem>
-                        <TabItem Header="Edit" />
-                        <TabItem Header="Monitor" />
+                        <TabItem Header="Edit" Width="100"/>
+
                     </TabControl>
                 </Grid>
             </TabItem>
