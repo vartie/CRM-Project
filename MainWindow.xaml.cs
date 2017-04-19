@@ -16,6 +16,8 @@ using System.Windows.Controls.Ribbon;
 using System.Data.SqlClient;
 using Microsoft.Win32;
 using System.Text.RegularExpressions;
+using System.IO;
+using System.Net.Mail;
 
 namespace CRMProject
 {
@@ -26,19 +28,24 @@ namespace CRMProject
     {
         Database DB;
         DateTime ValidBirthDate = DateTime.Now.AddYears(-25);
+        char[] Rank =new char[]{ 'A', 'B', 'C', 'D', 'E', 'F' };
+        private byte[] m_barrImg;
+        private long m_lImageFileLength = 0;
         decimal salary;
         public MainWindow()
         {
             try
             {
-               // DB = new Database();
+                DB = new Database();
                 InitializeComponent();
             }
             catch (SqlException ex)
             {
                 MessageBox.Show("There is a problem in Connecting to the DateBase!", "Connection Error", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-            InitializeComponent();
+            tbEmployeeBirthdate.Foreground = Brushes.Gray;
+            tbEmployeeHireddate.Foreground = Brushes.Gray;
+            tbEmployeePhone.Foreground = Brushes.Gray;
         }
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
@@ -140,8 +147,8 @@ namespace CRMProject
                 return;
             }
             //Validate the Postalcode
-            Regex regex = new Regex("[abceghjklmnprstvxyABCEGHJKLMNPRSTVXY][0-9][abceghjklmnprstvwxyzABCEGHJKLMNPRSTVWXYZ] ?[0-9][abceghjklmnprstvwxyzABCEGHJKLMNPRSTVWXYZ][0-9]");
-            if (tbEmployeePostalcode.Text.Length < 2 || tbEmployeePostalcode.Text.Length > 7 || String.IsNullOrEmpty(tbEmployeePostalcode.Text) || !regex.IsMatch(tbEmployeePostalcode.Text))
+            Regex regexPostalcode = new Regex("[abceghjklmnprstvxyABCEGHJKLMNPRSTVXY][0-9][abceghjklmnprstvwxyzABCEGHJKLMNPRSTVWXYZ] ?[0-9][abceghjklmnprstvwxyzABCEGHJKLMNPRSTVWXYZ][0-9]");
+            if (tbEmployeePostalcode.Text.Length < 2 || tbEmployeePostalcode.Text.Length > 7 || String.IsNullOrEmpty(tbEmployeePostalcode.Text) || !regexPostalcode.IsMatch(tbEmployeePostalcode.Text))
             {
                 lblEmployeePostalcodeError.Content = "Invalid PostalCode!";
                 tbEmployeePostalcode.Focus();
@@ -152,6 +159,25 @@ namespace CRMProject
             {
                 lblEmployeeCountryError.Content = "Invalid Country!";
                 tbEmployeeCountry.Focus();
+                return;
+            }
+            //Validatye the Email Address
+            try
+            {
+                MailAddress m = new MailAddress(tbEmployeeEmail.Text);  
+            }
+            catch (FormatException)
+            {
+                lblEmployeeEmailError.Content = "Invalid Email Address!";
+                tbEmployeeEmail.Focus();
+                return;
+            }
+            //Validate the phone
+            Regex regexPhone = new Regex(@"\(?\d{3}\)?[-\.]? *\d{3}[-\.]? *[-\.]?\d{4}");
+            if (tbEmployeePhone.Text.Length < 0 || tbEmployeePhone.Text.Length > 12 || String.IsNullOrEmpty(tbEmployeePhone.Text) || !regexPhone.IsMatch(tbEmployeePhone.Text))
+            {
+                lblEmployeePhoneError.Content = "Invalid Phone Number!";
+                tbEmployeePhone.Focus();
                 return;
             }
             //Validate the Salary
@@ -182,16 +208,42 @@ namespace CRMProject
                 return;
             }
             //Validate the Password
-            if (tbEmployeePassword.Text.Length < 2 || tbEmployeePassword.Text.Length > 15 || String.IsNullOrEmpty(tbEmployeePassword.Text))
+            if (tbEmployeePassword.Password.Length < 2 || tbEmployeePassword.Password.Length > 15 || String.IsNullOrEmpty(tbEmployeePassword.Password.ToString()))
             {
                 lblEmployeePasswordError.Content = "Invalid Password!";
                 tbEmployeePassword.Focus();
                 return;
             }
+            //Verify the password
+            if (tbEmployeePassword.Password != tbEmployeeVerifyPassword.Password)
+            {
+                lblEmployeeVerifyPasswordError.Content = "Passwords must match.";
+                tbEmployeeVerifyPassword.Focus();
+                return;
+            }
+            //Validate the Image
+            if (m_barrImg == null || m_barrImg.Length == 0)
+            {
+                lblEmployeeImageError.Content = "Please Uploade an image.";
+                return;
+            }
+            try
+            {
+                Employee em = new Employee(0, tbEmployeeFname.Text, tbEmployeeLname.Text, DateTime.Parse(tbEmployeeBirthdate.Text), DateTime.Parse(tbEmployeeHireddate.Text), int.Parse(tbEmployeeStreetNo.Text), tbEmployeeStreetName.Text, int.Parse(tbEmployeeAppNo.Text), tbEmployeeMunicipality.Text, tbEmployeeCity.Text, cmbEmployeeProvince.SelectedItem.ToString(), tbEmployeePostalcode.Text, tbEmployeeCountry.Text,tbEmployeeEmail.Text,tbEmployeePhone.Text, Rank[cmbRank.SelectedIndex], cmbTitle.SelectedIndex, salary, tbEmployeeUsername.Text, tbEmployeePassword.Password.ToString(), m_barrImg);
+                DB.addEmployee(em);
+                cleanAllEmployeeTextBoxInAddForm();
 
-
-           // Employee e = new Employee(0, tbEmployeeFname.Text, tbEmployeeLname.Text, DateTime.Parse(tbEmployeeBirthdate.Text), DateTime.Parse(tbEmployeeHireddate.Text), int.Parse(tbEmployeeStreetNo.Text), tbEmployeeStreetName.Text, int.Parse(tbEmployeeAppNo.Text), tbEmployeeMunicipality.Text, tbEmployeeCity.Text, cmbEmployeeProvince.Text, tbEmployeePostalcode.Text, tbEmployeeCountry, cmbRank.Text, cmbTitle.Text, salary, tbEmployeeUsername.Text, tbEmployeePassword.Text);
-
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (FormatException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+           
+           
         }
 
         private void btnEmployeeUploadImage_Click(object sender, RoutedEventArgs e)
@@ -201,9 +253,24 @@ namespace CRMProject
             op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
               "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
               "Portable Network Graphic (*.png)|*.png";
+            
             if (op.ShowDialog() == true)
             {
-               imgEmployeeImage.Source = new BitmapImage(new Uri(op.FileName));
+                try
+                {
+                    string strFn = op.FileName;
+                    imgEmployeeImage.Source = new BitmapImage(new Uri(strFn));
+                    FileInfo fiImage = new FileInfo(strFn);
+                    this.m_lImageFileLength = fiImage.Length;
+                    FileStream fs = new FileStream(strFn, FileMode.Open, FileAccess.Read, FileShare.Read);
+                    m_barrImg = new byte[Convert.ToInt32(this.m_lImageFileLength)];
+                    int iBytesRead = fs.Read(m_barrImg, 0, Convert.ToInt32(this.m_lImageFileLength));
+                    fs.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 
@@ -218,19 +285,64 @@ namespace CRMProject
             lblEmployeeCityError.Content = "";
             lblEmployeePostalcodeError.Content = "";
             lblEmployeeCountryError.Content = "";
+            lblEmployeeEmailError.Content = "";
+            lblEmployeePhoneError.Content = "";
             lblEmployeeSalaryError.Content = "";
             lblEmployeeUsernameError.Content = "";
-            lblEmployeePasswordError.Content = "";  
+            lblEmployeePasswordError.Content = "";
+            lblEmployeeVerifyPasswordError.Content = "";
+        }
+        private void cleanAllEmployeeTextBoxInAddForm()
+        {
+            tbEmployeeFname.Text = "";
+            tbEmployeeLname.Text = "";
+            tbEmployeeAppNo.Text = "";
+            tbEmployeeCity.Text = "";
+            tbEmployeeCountry.Text = "";
+            tbEmployeeEmail.Text = "";
+            tbEmployeePhone.Text = "";
+            tbEmployeeMunicipality.Text = "";
+            tbEmployeeSalary.Text = "";
+            tbEmployeePostalcode.Text = "";
+            tbEmployeeStreetName.Text = "";
+            tbEmployeeStreetNo.Text = "";
+            tbEmployeeUsername.Text = "";
+            tbEmployeePassword.Password = "";
+            tbEmployeeVerifyPassword.Password = "";
+            tbEmployeeHireddate.Text = "YYYY/MM/DD";
+            tbEmployeeBirthdate.Text = "YYYY/MM/DD";
+            tbEmployeePhone.Text = "000-000-0000";
+            tbEmployeeBirthdate.Foreground = Brushes.Gray;
+            tbEmployeeHireddate.Foreground = Brushes.Gray;
+            tbEmployeePhone.Foreground = Brushes.Gray;
+            imgEmployeeImage.Source = new BitmapImage(new Uri(@"C:\Users\ipd\Documents\CRM-Project\Images\personal.png"));
+
         }
 
         private void tbEmployeeBirthdate_GotFocus(object sender, RoutedEventArgs e)
         {
             tbEmployeeBirthdate.Text = "";
+            tbEmployeeBirthdate.Foreground = Brushes.Black;
+            
         }
 
         private void tbEmployeeHireddate_GotFocus(object sender, RoutedEventArgs e)
         {
             tbEmployeeHireddate.Text = "";
+            tbEmployeeHireddate.Foreground = Brushes.Black;
+        }
+
+       
+
+        private void btnClearAddEmployeeForm_Click(object sender, RoutedEventArgs e)
+        {
+            cleanAllEmployeeTextBoxInAddForm();
+        }
+
+        private void tbEmployeePhone_GotFocus(object sender, RoutedEventArgs e)
+        {
+            tbEmployeePhone.Text = "";
+            tbEmployeePhone.Foreground = Brushes.Black;
         }
 
         

@@ -21,6 +21,8 @@ namespace CRMProject
         private string _Province;
         private string _PostalCode;
         private string _Country;
+        private string _Email;
+        private string _Phone;
         private char _Rank;
         private int _Title;
         private decimal _SalaryPerHour;
@@ -31,7 +33,7 @@ namespace CRMProject
         
 
         /* Constractor */
-        public Employee(int id, string fname, string lname, DateTime birth, DateTime hire, int streetno, string streetname, int appno, string municipality, string city, string province, string postalcode, string country, char rank, int title, decimal salary, string username, string password, byte[] image)
+        public Employee(int id, string fname, string lname, DateTime birth, DateTime hire, int streetno, string streetname, int appno, string municipality, string city, string province, string postalcode, string country,string email,string phone, char rank, int title, decimal salary, string username, string password, byte[] image)
         {
             Id = id;
             Fname = fname;
@@ -46,6 +48,8 @@ namespace CRMProject
             Province = province;
             PostalCode = postalcode;
             Country = country;
+            Email = email;
+            Phone = phone;
             Rank = rank;
             Title = title;
             SalaryPerHour = salary;
@@ -177,6 +181,26 @@ namespace CRMProject
                 }
                 _Country = value;
             }
+        }
+        public string Email
+        {
+            get { return _Email; }
+            set {
+                if (value.Length < 2 || String.IsNullOrEmpty(value))
+                {
+                    throw new ArgumentException("Email Address must be valid.!");
+                }
+                _Email = value; }
+        }
+        public string Phone
+        {
+            get { return _Phone; }
+            set {
+                if (value.Length < 2 || value.Length >20 || String.IsNullOrEmpty(value))
+                {
+                    throw new ArgumentException("Phone Number must be valid.!");
+                }
+                _Phone = value; }
         }
         public char Rank
         {
