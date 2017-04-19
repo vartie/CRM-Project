@@ -11,4 +11,10 @@ develope the login form
 1. I have already create one table but not tested yet and do the first riboon test and 
 it works very well
 2.In net 24 hours i will go on creating the other tables and test them
-3.
+*************************** Fourth Day *********************************
+1.I start to read the MVVM tutorial and working on Employee add-UI and goes to test it
+2. in 24 hours I will finish the Employee add-UI and test it
+3.Full of question about MVVM
+*************************** Fifth Day ***********************************
+1. Still working on MVVM and Employee Add-UI
+2.

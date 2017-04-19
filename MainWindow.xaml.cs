@@ -175,14 +175,14 @@ namespace CRMProject
                 }
             }
             //Validate the Username
-            if (tbEmployeeUsername.Text.Length < 2 || tbEmployeeUsername.Text.Length > 50 || String.IsNullOrEmpty(tbEmployeeUsername.Text))
+            if (tbEmployeeUsername.Text.Length < 2 || tbEmployeeUsername.Text.Length > 15 || String.IsNullOrEmpty(tbEmployeeUsername.Text))
             {
                 lblEmployeeUsernameError.Content = "Invalid Username!";
                 tbEmployeeUsername.Focus();
                 return;
             }
             //Validate the Password
-            if (tbEmployeePassword.Text.Length < 2 || tbEmployeePassword.Text.Length > 50 || String.IsNullOrEmpty(tbEmployeePassword.Text))
+            if (tbEmployeePassword.Text.Length < 2 || tbEmployeePassword.Text.Length > 15 || String.IsNullOrEmpty(tbEmployeePassword.Text))
             {
                 lblEmployeePasswordError.Content = "Invalid Password!";
                 tbEmployeePassword.Focus();

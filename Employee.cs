@@ -22,13 +22,16 @@ namespace CRMProject
         private string _PostalCode;
         private string _Country;
         private char _Rank;
-        private string _Title;
+        private int _Title;
         private decimal _SalaryPerHour;
         private string _UserName;
         private string _Password;
+        private byte[] _Image;
+
+        
 
         /* Constractor */
-        public Employee(int id, string fname, string lname, DateTime birth, DateTime hire, int streetno, string streetname, int appno, string municipality, string city, string province, string postalcode, string country, char rank, string title, decimal salary, string username, string password)
+        public Employee(int id, string fname, string lname, DateTime birth, DateTime hire, int streetno, string streetname, int appno, string municipality, string city, string province, string postalcode, string country, char rank, int title, decimal salary, string username, string password, byte[] image)
         {
             Id = id;
             Fname = fname;
@@ -48,6 +51,7 @@ namespace CRMProject
             SalaryPerHour = salary;
             UserName = username;
             Password = password;
+            Image = image;
         }
 
 
@@ -179,17 +183,10 @@ namespace CRMProject
             get { return _Rank; }
             set { _Rank = value; }
         }
-        public string Title
+        public int Title
         {
             get { return _Title; }
-            set
-            {
-                if (value.Length < 2 || value.Length > 50 || String.IsNullOrEmpty(value))
-                {
-                    throw new ArgumentException("First Title must be valid.!");
-                }
-                _Title = value;
-            }
+            set {_Title = value; }
         }
         public decimal SalaryPerHour
         {
@@ -219,6 +216,11 @@ namespace CRMProject
                 }
                 _Password = value;
             }
+        }
+        public byte[] Image
+        {
+            get { return _Image; }
+            set { _Image = value; }
         }
     }
 }

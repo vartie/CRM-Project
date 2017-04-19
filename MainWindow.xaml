@@ -168,10 +168,17 @@
                                 </Border>
                                 <Label x:Name="lblEmployeeImageError" Content="" FontSize="11" Foreground="Red" HorizontalAlignment="Left" Margin="687,200,0,0" VerticalAlignment="Top" Width="151"/>
                                 <Button x:Name="btnEmployeeUploadImage" Content="Upload Image" HorizontalAlignment="Left" Margin="687,225,0,0" VerticalAlignment="Top" Width="151" Height="38" Click="btnEmployeeUploadImage_Click"/>
+                                <Label x:Name="lblNotes" Content="Notes:" HorizontalAlignment="Left" Margin="687,297,0,0" VerticalAlignment="Top" Width="151" FontSize="15" Foreground="Red"/>
+                                <Label x:Name="lblNote1" Content="1. You Must Fill Up all the Fields." HorizontalAlignment="Left" Margin="687,332,0,0" VerticalAlignment="Top" Width="295"/>
+                                <Label x:Name="lblNote2" Content="2. Username max length is 15 charachters." HorizontalAlignment="Left" Margin="687,367,0,0" VerticalAlignment="Top" Width="295"/>
+                                <Label x:Name="lblNote3" Content="3. PassWord max length is 15 charachters." HorizontalAlignment="Left" Margin="687,402,0,0" VerticalAlignment="Top" Width="295"/>
+
+
 
                             </Grid>
                         </TabItem>
                         <TabItem Header="Edit" Width="100"/>
+
 
                     </TabControl>
                 </Grid>
