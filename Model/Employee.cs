@@ -24,7 +24,7 @@ namespace CRMProject
         private string _Email;
         private string _Phone;
         private char _Rank;
-        private int _Title;
+        private string _Title;
         private decimal _SalaryPerHour;
         private string _UserName;
         private string _Password;
@@ -33,7 +33,7 @@ namespace CRMProject
         
 
         /* Constractor */
-        public Employee(int id, string fname, string lname, DateTime birth, DateTime hire, int streetno, string streetname, int appno, string municipality, string city, string province, string postalcode, string country,string email,string phone, char rank, int title, decimal salary, string username, string password, byte[] image)
+        public Employee(int id, string fname, string lname, DateTime birth, DateTime hire, int streetno, string streetname, int appno, string municipality, string city, string province, string postalcode, string country,string email,string phone, char rank, string title, decimal salary, string username, string password, byte[] image)
         {
             Id = id;
             Fname = fname;
@@ -207,7 +207,7 @@ namespace CRMProject
             get { return _Rank; }
             set { _Rank = value; }
         }
-        public int Title
+        public string Title
         {
             get { return _Title; }
             set {_Title = value; }

@@ -1,7 +1,12 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,27 +17,21 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Windows.Controls.Ribbon;
-using System.Data.SqlClient;
-using Microsoft.Win32;
-using System.Text.RegularExpressions;
-using System.IO;
-using System.Net.Mail;
 
-namespace CRMProject
+namespace CRMProject.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for EmployeesAddTabView.xaml
     /// </summary>
-    public partial class MainWindow : RibbonWindow
+    public partial class EmployeesAddTabView : UserControl
     {
         Database DB;
         DateTime ValidBirthDate = DateTime.Now.AddYears(-25);
-        char[] Rank =new char[]{ 'A', 'B', 'C', 'D', 'E', 'F' };
+        char[] Rank = new char[] { 'A', 'B', 'C', 'D', 'E', 'F' };
         private byte[] m_barrImg;
         private long m_lImageFileLength = 0;
         decimal salary;
-        public MainWindow()
+        public EmployeesAddTabView()
         {
             try
             {
@@ -47,6 +46,7 @@ namespace CRMProject
             tbEmployeeHireddate.Foreground = Brushes.Gray;
             tbEmployeePhone.Foreground = Brushes.Gray;
         }
+
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
@@ -96,7 +96,7 @@ namespace CRMProject
                     tbEmployeeBirthdate.Focus();
                     return;
                 }
-                
+
             }
             // Validate the hired date
             if (String.IsNullOrEmpty(tbEmployeeHireddate.Text))
@@ -136,7 +136,7 @@ namespace CRMProject
             if (tbEmployeeMunicipality.Text.Length < 2 || tbEmployeeMunicipality.Text.Length > 50 || String.IsNullOrEmpty(tbEmployeeMunicipality.Text))
             {
                 lblEmployeeMunicipalityError.Content = "Invalid Municipality!";
-                tbEmployeeMunicipality.Focus();                
+                tbEmployeeMunicipality.Focus();
                 return;
             }
             //Validate the City
@@ -164,7 +164,7 @@ namespace CRMProject
             //Validatye the Email Address
             try
             {
-                MailAddress m = new MailAddress(tbEmployeeEmail.Text);  
+                MailAddress m = new MailAddress(tbEmployeeEmail.Text);
             }
             catch (FormatException)
             {
@@ -229,8 +229,12 @@ namespace CRMProject
             }
             try
             {
-                Employee em = new Employee(0, tbEmployeeFname.Text, tbEmployeeLname.Text, DateTime.Parse(tbEmployeeBirthdate.Text), DateTime.Parse(tbEmployeeHireddate.Text), int.Parse(tbEmployeeStreetNo.Text), tbEmployeeStreetName.Text, int.Parse(tbEmployeeAppNo.Text), tbEmployeeMunicipality.Text, tbEmployeeCity.Text, cmbEmployeeProvince.SelectedItem.ToString(), tbEmployeePostalcode.Text, tbEmployeeCountry.Text,tbEmployeeEmail.Text,tbEmployeePhone.Text, Rank[cmbRank.SelectedIndex], cmbTitle.SelectedIndex, salary, tbEmployeeUsername.Text, tbEmployeePassword.Password.ToString(), m_barrImg);
+                string title = ((ComboBoxItem)cmbTitle.SelectedItem).Content.ToString();
+                string province = ((ComboBoxItem)cmbEmployeeProvince.SelectedItem).Content.ToString();
+                //MessageBox.Show(tbEmployeeFname.Text, "Employee Added", MessageBoxButton.OK, MessageBoxImage.Information);
+                Employee em = new Employee(0, tbEmployeeFname.Text, tbEmployeeLname.Text, DateTime.Parse(tbEmployeeBirthdate.Text), DateTime.Parse(tbEmployeeHireddate.Text), int.Parse(tbEmployeeStreetNo.Text), tbEmployeeStreetName.Text, int.Parse(tbEmployeeAppNo.Text), tbEmployeeMunicipality.Text, tbEmployeeCity.Text, province, tbEmployeePostalcode.Text, tbEmployeeCountry.Text, tbEmployeeEmail.Text, tbEmployeePhone.Text, Rank[cmbRank.SelectedIndex], title, salary, tbEmployeeUsername.Text, tbEmployeePassword.Password.ToString(), m_barrImg);
                 DB.addEmployee(em);
+                MessageBox.Show("Employee Added Successfully.", "Employee Added", MessageBoxButton.OK, MessageBoxImage.Information);
                 cleanAllEmployeeTextBoxInAddForm();
 
             }
@@ -242,8 +246,8 @@ namespace CRMProject
             {
                 MessageBox.Show(ex.Message);
             }
-           
-           
+
+
         }
 
         private void btnEmployeeUploadImage_Click(object sender, RoutedEventArgs e)
@@ -253,7 +257,7 @@ namespace CRMProject
             op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
               "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
               "Portable Network Graphic (*.png)|*.png";
-            
+
             if (op.ShowDialog() == true)
             {
                 try
@@ -323,7 +327,7 @@ namespace CRMProject
         {
             tbEmployeeBirthdate.Text = "";
             tbEmployeeBirthdate.Foreground = Brushes.Black;
-            
+
         }
 
         private void tbEmployeeHireddate_GotFocus(object sender, RoutedEventArgs e)
@@ -332,7 +336,7 @@ namespace CRMProject
             tbEmployeeHireddate.Foreground = Brushes.Black;
         }
 
-       
+
 
         private void btnClearAddEmployeeForm_Click(object sender, RoutedEventArgs e)
         {
@@ -345,6 +349,5 @@ namespace CRMProject
             tbEmployeePhone.Foreground = Brushes.Black;
         }
 
-        
     }
 }

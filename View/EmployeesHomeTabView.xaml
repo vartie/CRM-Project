@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="CRMProject.View.EmployeesHomeTabView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local = "clr-namespace:CRMProject.View"
+             mc:Ignorable="d" >
+    <Grid>
+        <TextBox x:Name="tbSearchEmployeeByName" HorizontalAlignment="Left" Height="34" Margin="10,10,0,0" TextWrapping="Wrap" Text="Search people by First Name or last Name" VerticalAlignment="Top" Width="600" Foreground="Gray" GotFocus="tbSearchEmployeeByName_GotFocus" TextChanged="tbSearchEmployeeByName_TextChanged"/>
+        <ListView HorizontalAlignment="Left" Margin="10,49,0,0" Name="lvEmployees" Width="600" ItemsSource = "{Binding Path = Employees}" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="First Name" Width="150" DisplayMemberBinding="{Binding Fname}" />
+                    <GridViewColumn Header="Last Name" Width="150" DisplayMemberBinding="{Binding Lname}" />
+                    <GridViewColumn Header="Email" Width="150" DisplayMemberBinding="{Binding Email}" />
+                    <GridViewColumn Header="Phone" Width="150" DisplayMemberBinding="{Binding Phone}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</UserControl>
