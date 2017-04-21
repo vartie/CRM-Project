@@ -36,10 +36,8 @@ namespace CRMProject
 
         private void EmployeesHomeTabViewControl_Loaded(object sender, RoutedEventArgs e)
         {
-            CRMProject.ViewModel.EmployeesHomeTabViewModel EmployeesHomeTabViewModelObject =
-               new CRMProject.ViewModel.EmployeesHomeTabViewModel();
+            CRMProject.ViewModel.EmployeesHomeTabViewModel EmployeesHomeTabViewModelObject = new CRMProject.ViewModel.EmployeesHomeTabViewModel();
             EmployeesHomeTabViewModelObject.LoadEmployees();
-
             EmployeesHomeTabView.DataContext = EmployeesHomeTabViewModelObject;
         }
      

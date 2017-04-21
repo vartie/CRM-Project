@@ -67,6 +67,7 @@
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="Model\Customer.cs" />
+    <Compile Include="MyICommand.cs" />
     <Compile Include="ViewModel\EmployeesHomeTabViewModel.cs" />
     <Compile Include="View\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -126,7 +127,9 @@
     <Resource Include="Images\save.png" />
     <Resource Include="Images\undo.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\Search.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

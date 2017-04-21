@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CRMProject.ViewModel;
+
 
 namespace CRMProject.View
 {
@@ -20,6 +22,7 @@ namespace CRMProject.View
     /// </summary>
     public partial class EmployeesHomeTabView : UserControl
     {
+        EmployeesHomeTabViewModel thisModel = new EmployeesHomeTabViewModel();
         public EmployeesHomeTabView()
         {
             InitializeComponent();
@@ -32,8 +35,9 @@ namespace CRMProject.View
 
         private void tbSearchEmployeeByName_TextChanged(object sender, TextChangedEventArgs e)
         {
-           
-           
+            
+
+
         }
     }
 }

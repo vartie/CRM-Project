@@ -6,8 +6,13 @@
              xmlns:local = "clr-namespace:CRMProject.View"
              mc:Ignorable="d" >
     <Grid>
-        <TextBox x:Name="tbSearchEmployeeByName" HorizontalAlignment="Left" Height="34" Margin="10,10,0,0" TextWrapping="Wrap" Text="Search people by First Name or last Name" VerticalAlignment="Top" Width="600" Foreground="Gray" GotFocus="tbSearchEmployeeByName_GotFocus" TextChanged="tbSearchEmployeeByName_TextChanged"/>
-        <ListView HorizontalAlignment="Left" Margin="10,49,0,0" Name="lvEmployees" Width="600" ItemsSource = "{Binding Path = Employees}" >
+        <TextBox x:Name="tbSearchEmployeeByName" HorizontalAlignment="Left" Height="34" Margin="10,10,0,0" TextWrapping="Wrap" Text="{Binding SearchCriteria}" VerticalAlignment="Top" Width="542" Foreground="Gray" GotFocus="tbSearchEmployeeByName_GotFocus" />
+        <Button HorizontalAlignment="Left"  Margin="557,10,0,39" Command="{Binding SearchCommand}" Width="50">
+            <StackPanel>
+                <Image Source="../Images/Search.png" Width="43" Height="21" />
+            </StackPanel>
+        </Button>
+        <ListView HorizontalAlignment="Left" Margin="10,59,0,0" Name="lvEmployees" Width="600" ItemsSource = "{Binding Path = Employees}" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="First Name" Width="150" DisplayMemberBinding="{Binding Fname}" />
