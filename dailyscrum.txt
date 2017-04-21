@@ -17,4 +17,14 @@ it works very well
 3.Full of question about MVVM
 *************************** Fifth Day ***********************************
 1. Still working on MVVM and Employee Add-UI
-2.
+2. in 24 hours I will finish the Employee add-UI and test it
+3.Full of question about MVVM
+*************************** sixth Day ***********************************
+1. Still working on MVVM and Employee Add-UI
+2. in 24 hours I will finish the Employee add-UI and test it
+3.Full of question about MVVM
+*************************** Seventh Day ***********************************
+1.I have finished Employee add-UI and start the employee Home tab UI. and also 
+finish the MVVM Tutorial and start implementing MVVM into project. 
+2.in 24 hours countinue working on MVVM
+3. 
