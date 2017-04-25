@@ -27,4 +27,12 @@ it works very well
 1.I have finished Employee add-UI and start the employee Home tab UI. and also 
 finish the MVVM Tutorial and start implementing MVVM into project. 
 2.in 24 hours countinue working on MVVM
-3. 
+3. full of question about mvvm
+*************************** eighth Day ***********************************
+1.Employee add tab ui almost finish and i am still working on mvvm
+2.in this weekend i hope i could finish the mvvm and switch to it.
+3.
+*************************** ninth Day ***********************************
+1.I have finished the Mvvm successfuly and start switchin to it.
+2.in 24 hours I will do the form validations on MVVM and buttom commands
+3.
