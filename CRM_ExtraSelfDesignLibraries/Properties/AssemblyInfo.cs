@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("CRM_Model")]
+[assembly: AssemblyTitle("CRM_ExtraSelfDesignLibraries")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("CRM_Model")]
+[assembly: AssemblyProduct("CRM_ExtraSelfDesignLibraries")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("41b42d56-32ef-4c43-8376-fcf4afb821ca")]
+[assembly: Guid("601e672f-6718-4f8a-9dcb-53c99b4a2263")]
 
 // Version information for an assembly consists of the following four values:
 //
