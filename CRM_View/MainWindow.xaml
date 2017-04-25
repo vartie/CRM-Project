@@ -6,9 +6,54 @@
         xmlns:local="clr-namespace:CRM_View"
         xmlns:View = "clr-namespace:CRM_View.Views"
         mc:Ignorable="d"
-        Title="MainWindow" MinHeight="680" MinWidth="1200" WindowState="Maximized">
-    
-    <Grid>
-        <View:EmployeesAddTabView x:Name = "EmployeesAddTabView"/>
+        Title="MainWindow" MinHeight="370" MinWidth="860" Height="1050" Width="1580" WindowState="Maximized" WindowStartupLocation="CenterScreen">
+
+    <Grid Margin="0,0,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <View:RibbonView x:Name="RibbonView" Grid.Column="0" Grid.Row="0" Margin="0,0,-331.2,628.2" HorizontalAlignment="Left" Width="1530" Height="144" VerticalAlignment="Bottom"/>
+        <TabControl TabStripPlacement="Left" Margin="0,150,-330.4,-234.8" Height="860" VerticalAlignment="Top" >
+            <TabControl.Resources>
+                <Style TargetType="{x:Type TabItem}">
+                    <Setter Property="HeaderTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <ContentPresenter Content="{TemplateBinding Content}">
+                                    <ContentPresenter.LayoutTransform>
+                                        <RotateTransform Angle="360" />
+                                    </ContentPresenter.LayoutTransform>
+                                </ContentPresenter>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Padding" Value="3" />
+                </Style>
+            </TabControl.Resources>
+            <TabItem Header="Dashboard" Width="150" FontSize="15">
+
+            </TabItem>
+            <TabItem Header="Employees" Width="150" FontSize="15" Margin="0,-2" >
+                <Grid>
+                    <TabControl Margin="0,0,28,0">
+                        <TabItem Header="Home" Width="100">
+
+                        </TabItem>
+                        <TabItem Header="Monitor" Width="100"/>
+                        <TabItem Header="Add" Width="100">
+                            <Grid>
+                                <View:EmployeesAddTabView x:Name = "EmployeesAddTabView" Margin="0,1,0.4,285"/>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Edit" Width="100"/>
+                    </TabControl>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Customers" Width="150" FontSize="15" />
+        </TabControl>
+
     </Grid>
 </Window>

@@ -145,7 +145,5 @@ namespace CRM_ExtraSelfDesignLibraries
             }
             return true;
         }
-       
-
     }
 }

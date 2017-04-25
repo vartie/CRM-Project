@@ -7,7 +7,7 @@
              xmlns:viewModel = "clr-namespace:CRM_ViewModel;assembly=CRM_ViewModel"
              xmlns:ff= "clr-namespace:CRM_ExtraSelfDesignLibraries;assembly=CRM_ExtraSelfDesignLibraries"
              xmlns:validators ="clr-namespace:CRM_ExtraSelfDesignLibraries;assembly=CRM_ExtraSelfDesignLibraries"
-             mc:Ignorable="d" Height="533.109" Width="1274.251">
+             mc:Ignorable="d" Height="533.109" Width="Auto">
     <UserControl.Resources>
         <Style TargetType="{x:Type TextBox}">
             <Setter Property="Validation.ErrorTemplate">
@@ -155,7 +155,6 @@
         </TextBox>
         <Label x:Name="lblEmployeeProvince" Content="Province:" HorizontalAlignment="Left" Margin="23,479,0,0" VerticalAlignment="Top" Width="87" RenderTransformOrigin="0.517,1.385"/>
         <ComboBox x:Name="cmbEmployeeProvince" HorizontalAlignment="Left" Margin="133,484,0,0" VerticalAlignment="Top" Width="166" ItemsSource="{Binding Provinces}" SelectedItem="{Binding Province, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedIndex="0"/>
-
         <Label x:Name="lblEmployeePostalcode" Content="Postalcode:" HorizontalAlignment="Left" Margin="359,34,0,0" VerticalAlignment="Top" Width="87" RenderTransformOrigin="0.517,1.385"/>
         <TextBox x:Name="tbEmployeePostalcode" HorizontalAlignment="Left" Height="26" Margin="451,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166">
             <TextBox.Text>
@@ -200,11 +199,8 @@
         </TextBox>
         <Label x:Name="lblEmployeeRank" Content="Rank:" HorizontalAlignment="Left" Margin="359,242,0,0" VerticalAlignment="Top" Width="87" RenderTransformOrigin="0.517,1.385"/>
         <ComboBox x:Name="cmbRank" HorizontalAlignment="Left" Margin="451,242,0,0" VerticalAlignment="Top" Width="44" ItemsSource="{Binding Ranks}" SelectedItem="{Binding Rank, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedIndex="0"/>
-
         <Label x:Name="lblEmployeeTitle" Content="Title:" HorizontalAlignment="Left" Margin="359,268,0,0" VerticalAlignment="Top" Width="87" RenderTransformOrigin="0.517,1.385"/>
         <ComboBox x:Name="cmbTitle" HorizontalAlignment="Left" Margin="451,270,0,0" VerticalAlignment="Top" Width="166" ItemsSource="{Binding Titles}" SelectedItem="{Binding Title, Mode=TwoWay ,UpdateSourceTrigger=PropertyChanged}" SelectedIndex="0"/>
-
-
         <Label x:Name="lblEmployeeSalary" Content="salary(p/h):" HorizontalAlignment="Left" Margin="364,321,0,0" VerticalAlignment="Top" Width="87" RenderTransformOrigin="0.517,1.385"/>
         <TextBox x:Name="tbEmployeeSalary" HorizontalAlignment="Left" Height="23" Margin="451,324,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166">
             <TextBox.Text>
@@ -230,12 +226,9 @@
             </TextBox.Text>
         </TextBox>
         <Label x:Name="lblEmployeePassword" Content="Password:" HorizontalAlignment="Left" Margin="359,426,0,0" VerticalAlignment="Top" Width="87" RenderTransformOrigin="0.517,1.385"/>
-        <PasswordBox x:Name="tbEmployeePassword" HorizontalAlignment="Left" Height="27" Margin="451,429,0,0"  VerticalAlignment="Top" Width="166" PasswordChar="*" MaxLength="15" ff:LetPasswordBoxToBind.BindPassword="true"  ff:LetPasswordBoxToBind.BoundPassword="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-
-        </PasswordBox>
+        <PasswordBox x:Name="tbEmployeePassword" HorizontalAlignment="Left" Height="27" Margin="451,429,0,0"  VerticalAlignment="Top" Width="166" PasswordChar="*" MaxLength="15" ff:LetPasswordBoxToBind.BindPassword="true"  ff:LetPasswordBoxToBind.BoundPassword="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         <Label x:Name="lblEmployeeVerifyPassword" Content="Confirm:" HorizontalAlignment="Left" Margin="364,479,0,0" VerticalAlignment="Top" Width="87" RenderTransformOrigin="0.517,1.385"/>
         <PasswordBox x:Name="tbEmployeeVerifyPassword" HorizontalAlignment="Left" Height="23" Margin="451,484,0,0"  VerticalAlignment="Top" Width="166" PasswordChar="*" MaxLength="15" ff:LetPasswordBoxToBind.BindPassword="true"  ff:LetPasswordBoxToBind.BoundPassword="{Binding Path=ConfirmPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
         <Button x:Name="btnAddEmployee" Content="Add Employee" HorizontalAlignment="Left" Margin="687,447,0,0" VerticalAlignment="Top" Width="246" Height="26" Command="{Binding AddEmployee}" />
         <Button x:Name="btnClearAddEmployeeForm" Content="Clear The Form" HorizontalAlignment="Left" Margin="687,494,0,0" VerticalAlignment="Top" Width="246" Height="26" Command="{Binding ClearCommand}"/>
         <Border Name="brdEmployeeImage" BorderThickness="2" BorderBrush="#FF000000" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="687,44,0,0" Height="151.2" Width="151.2">

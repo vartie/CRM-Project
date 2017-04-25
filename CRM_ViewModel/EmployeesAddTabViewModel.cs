@@ -194,7 +194,6 @@ namespace CRM_ViewModel
                 }               
             }
         }
-
         public ObservableCollection<string> Provinces { get; }
         public string Province
         {
@@ -249,7 +248,6 @@ namespace CRM_ViewModel
                 }             
             }
         }
-
         public ObservableCollection<char> Ranks { get; }
         public char Rank
         {
@@ -263,7 +261,6 @@ namespace CRM_ViewModel
                 }
             }
         }
-
         public ObservableCollection<string> Titles { get; }
         public string Title
         {
@@ -338,7 +335,6 @@ namespace CRM_ViewModel
                 }               
             }
         }
-
         public BitmapImage ImageSource
         {
             get {return _ImageSource; }
