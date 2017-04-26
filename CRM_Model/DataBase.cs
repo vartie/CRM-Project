@@ -19,7 +19,7 @@ namespace CRM_Model
 
         public void addEmployee(Employee e)
         {
-            string sql = "INSERT INTO Employee(FName,LName,BirthDate,HiredDate,StreetNo,StreetName,AppNo,Municipality,City,Province,PostalCode,Country,Email,Phone,Rank,Title,SalaryPerHour,UserName,Password) VALUES(@Fname,@Lname,@BirthDate,@HiredDate,@StreetNo,@StreetName,@AppNo,@Municipality,@City,@Province,@PostalCode,@Country,@Email,@Phone,@Rank,@Title,@SalaryPerHour,@UserName,@Password)";
+            string sql = "INSERT INTO Employee(FName,LName,BirthDate,HiredDate,StreetNo,StreetName,AppNo,Municipality,City,Province,PostalCode,Country,Email,Phone,Rank,Title,SalaryPerHour,UserName,Password,Image) VALUES(@Fname,@Lname,@BirthDate,@HiredDate,@StreetNo,@StreetName,@AppNo,@Municipality,@City,@Province,@PostalCode,@Country,@Email,@Phone,@Rank,@Title,@SalaryPerHour,@UserName,@Password,@Image)";
             SqlCommand cmd = new SqlCommand(sql, conn);
             cmd.Parameters.Add("@Fname", SqlDbType.VarChar).Value = e.Fname;
             cmd.Parameters.Add("@Lname", SqlDbType.VarChar).Value = e.Lname;
@@ -40,7 +40,7 @@ namespace CRM_Model
             cmd.Parameters.Add("@SalaryPerHour", SqlDbType.Decimal).Value = e.SalaryPerHour;
             cmd.Parameters.Add("@UserName", SqlDbType.VarChar).Value = e.UserName;
             cmd.Parameters.Add("@Password", SqlDbType.VarChar).Value = e.Password;
-            //cmd.Parameters.Add("@Image", SqlDbType.Image).Value = e.Image;
+            cmd.Parameters.Add("@Image", SqlDbType.Image).Value = e.Image;
             cmd.CommandType = CommandType.Text;
             cmd.ExecuteNonQuery();
         }

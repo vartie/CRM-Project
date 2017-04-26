@@ -52,7 +52,6 @@ namespace CRM_ViewModel
         private string _ConfirmPassword;
         private byte[] _Image;
         private BitmapImage _ImageSource;
-        private byte[] m_barrImg;
         private long m_lImageFileLength = 0;
 
         //viewModel Constructor 
@@ -363,7 +362,6 @@ namespace CRM_ViewModel
         // Button upload Image clicked
         public void btnUpload_Click()
         {
-            //Debug.WriteLine("hello");
             OpenFileDialog op = new OpenFileDialog();
             op.Title = "Select a picture";
             op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
@@ -372,14 +370,15 @@ namespace CRM_ViewModel
             if (op.ShowDialog() == true)
             {
                 try
-                {
+                {                  
                     string strFn = op.FileName;
-                    ImageSource = new BitmapImage(new Uri(strFn));                   
+                    //ImageSource = new BitmapImage(new Uri(strFn));             
                     FileInfo fiImage = new FileInfo(strFn);
                     this.m_lImageFileLength = fiImage.Length;
                     FileStream fs = new FileStream(strFn, FileMode.Open, FileAccess.Read, FileShare.Read);
-                    m_barrImg = new byte[Convert.ToInt32(this.m_lImageFileLength)];
-                    int iBytesRead = fs.Read(m_barrImg, 0, Convert.ToInt32(this.m_lImageFileLength));
+                    Image = new byte[Convert.ToInt32(this.m_lImageFileLength)];
+                   // ImageSource = byteArrayToImage(Image);
+                   int iBytesRead = fs.Read(Image, 0, Convert.ToInt32(this.m_lImageFileLength));
                     fs.Close();
                 }
                 catch (Exception ex)
@@ -501,7 +500,7 @@ namespace CRM_ViewModel
                 return;
             }
             //Validate the Image
-            if (m_barrImg == null || m_barrImg.Length == 0)
+            if (Image == null || Image.Length == 0)
             {
                 MessageBox.Show("Please Upload An Image!", "Image Missing", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
@@ -530,6 +529,19 @@ namespace CRM_ViewModel
             Password = "";
             ConfirmPassword = "";
             ImageSource = new BitmapImage(new Uri(@"C:\Users\vartie\Desktop\CRM_View\CRM_View\Images\personal.png"));
+        }
+        //Convert byte[] to BitmapImage
+        private BitmapImage byteArrayToImage(byte[] array)
+        {
+            using (var ms = new System.IO.MemoryStream(array))
+            {
+                var image = new BitmapImage();
+                image.BeginInit();
+                image.CacheOption = BitmapCacheOption.OnLoad; // here
+                image.StreamSource = ms;
+                image.EndInit();
+                return image;
+            }
         }
 
     }

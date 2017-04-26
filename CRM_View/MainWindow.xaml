@@ -40,7 +40,7 @@
                 <Grid>
                     <TabControl Margin="0,0,28,0">
                         <TabItem Header="Home" Width="100">
-
+                            <View:EmployeeHomeTabView x:Name = "EmployeesHomeTabView" Margin="0,1,0.4,285"/>
                         </TabItem>
                         <TabItem Header="Monitor" Width="100"/>
                         <TabItem Header="Add" Width="100">

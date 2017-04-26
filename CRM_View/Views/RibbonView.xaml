@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CRM_View.Views"
-             mc:Ignorable="d" Height="138.39" Width="Auto" >
+             mc:Ignorable="d">
     <Grid>
         <Ribbon x:Name="RibbonWin"  SelectedIndex="0">
             <!-- Help Pane, located at the right-hand side -->

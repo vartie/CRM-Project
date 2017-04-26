@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="CRM_View.Views.EmployeeHomeTabView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CRM_View.Views"
+             xmlns:viewModel = "clr-namespace:CRM_ViewModel;assembly=CRM_ViewModel"
+             mc:Ignorable="d"  >
+    <UserControl.DataContext>
+        <viewModel:EmployeeHomeTabViewModel/>
+    </UserControl.DataContext>
+    <Grid Height="565" Width="1200">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="tbSearchEmployeeByName" VerticalAlignment="Top" HorizontalAlignment="Left" Height="34" Margin="0,5,0,0" TextWrapping="Wrap" Text="{Binding SearchEmployee , Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}" Width="750" Grid.ColumnSpan="2" />
+        <ListView VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,43,0,0" Name="lvEmployees" Width="750" SelectionMode="Single" ItemsSource = "{Binding Employees , Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedEmployee, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="401" Grid.ColumnSpan="2" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="First Name" Width="150" DisplayMemberBinding="{Binding Fname}" />
+                    <GridViewColumn Header="Last Name" Width="150" DisplayMemberBinding="{Binding Lname}" />
+                    <GridViewColumn Header="Title" Width="150" DisplayMemberBinding="{Binding Title}" />
+                    <GridViewColumn Header="Email" Width="150" DisplayMemberBinding="{Binding Email}" />
+                    <GridViewColumn Header="Phone" Width="150" DisplayMemberBinding="{Binding Phone}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Label x:Name="lblFname" Content="First Name:" Grid.Column="1" HorizontalAlignment="Left" Margin="761.4,43,-101,0" VerticalAlignment="Top" Width="86"/>
+        <Label x:Name="lblFnameContent" Content="{Binding SelectedEmployee.Fname}" Grid.Column="1" HorizontalAlignment="Left" Margin="852.2,43,-184.2,0" VerticalAlignment="Top" Width="120" Foreground="BlueViolet"/>
+        <Label x:Name="lblLname" Content="Last Name:" Grid.Column="1" HorizontalAlignment="Left" Margin="761.2,74,0,0" VerticalAlignment="Top" Width="86"/>
+        <Label x:Name="lblLnameContent" Content="{Binding SelectedEmployee.Lname}" Grid.Column="1" HorizontalAlignment="Left" Margin="852.2,74,-113,0" VerticalAlignment="Top" Width="120" Foreground="BlueViolet"/>
+        <Label x:Name="lblBirth" Content="Birth Date:" Grid.Column="1" HorizontalAlignment="Left" Margin="761.2,105,0,0" VerticalAlignment="Top" Width="84"/>
+        <Label x:Name="lblBirthContent" Content="{Binding SelectedEmployee.BirthDate}" Grid.Column="1" HorizontalAlignment="Left" Margin="852.2,105,-113.8,0" VerticalAlignment="Top" Width="120" Foreground="BlueViolet"/>
+        <Label x:Name="lblHired" Content="Hired Date:" Grid.Column="1" HorizontalAlignment="Left" Margin="761.2,136,0,0" VerticalAlignment="Top" Width="84"/>
+        <Label x:Name="lblHiredContent" Content="{Binding SelectedEmployee.HiredDate}" Grid.Column="1" HorizontalAlignment="Left" Margin="852.2,136,-106.6,0" VerticalAlignment="Top" Width="112" Foreground="BlueViolet"/>
+        <Label x:Name="lblFullAddress" Content="Address:" Grid.Column="1" HorizontalAlignment="Left" Margin="761.2,204,0,0" VerticalAlignment="Top" Width="84"/>
+        <Label x:Name="lblFullAddressContent" Content="{Binding FullAddress}" Grid.Column="1" HorizontalAlignment="Left" Margin="852.2,204,-12.4,0" VerticalAlignment="Top" Width="329" Foreground="BlueViolet"/>
+        <Label x:Name="lblEmail" Content="Email:" Grid.Column="1" HorizontalAlignment="Left" Margin="761.2,235,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.099,0.492" Width="84"/>
+        <Label x:Name="lblEmailContent" Content="{Binding SelectedEmployee.Email}" Grid.Column="1" HorizontalAlignment="Left" Margin="852.2,235,0,0" VerticalAlignment="Top" Width="200" Foreground="BlueViolet"/>
+        <Label x:Name="lblPhone" Content="Phone:" Grid.Column="1" HorizontalAlignment="Left" Margin="761.2,266,0,0" VerticalAlignment="Top" Width="84"/>
+        <Label x:Name="lblPhoneContent" Content="{Binding SelectedEmployee.Phone}" Grid.Column="1" HorizontalAlignment="Left" Margin="852.2,266,0,0" VerticalAlignment="Top" Width="112" Foreground="BlueViolet"/>
+        <Label x:Name="lblRank" Content="Rank:" Grid.Column="1" HorizontalAlignment="Left" Margin="761.2,297,0,0" VerticalAlignment="Top" Width="84"/>
+        <Label x:Name="lblRankContent" Content="{Binding SelectedEmployee.Rank}" Grid.Column="1" HorizontalAlignment="Left" Margin="852.2,297,0,0" VerticalAlignment="Top" Width="118" Foreground="BlueViolet"/>
+        <Label x:Name="lblTitle" Content="Title:" Grid.Column="1" HorizontalAlignment="Left" Margin="761.2,328,0,0" VerticalAlignment="Top" Width="84"/>
+        <Label x:Name="lblTitleContent" Content="{Binding SelectedEmployee.Title}" Grid.Column="1" HorizontalAlignment="Left" Margin="852.2,328,0,0" VerticalAlignment="Top" Width="112" Foreground="BlueViolet"/>
+        <Border Name="brdEmployeeImage" BorderThickness="2" BorderBrush="#FF000000" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="1030.2,43,-42,0" Height="151" Width="151" Grid.Column="1">
+            <Image x:Name="imgEmployeeImage" HorizontalAlignment="Left" VerticalAlignment="Stretch" Stretch="Fill" Margin="-1.6,-1.6,-2.2,1.2" Width="151" Source="{Binding SelectedEmployee.Image}"/>
+        </Border>
+
+    </Grid>
+</UserControl>

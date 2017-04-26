@@ -35,4 +35,9 @@ finish the MVVM Tutorial and start implementing MVVM into project.
 *************************** ninth Day ***********************************
 1.I have finished the Mvvm successfuly and start switchin to it.
 2.in 24 hours I will do the form validations on MVVM and buttom commands
-3.
+*************************** Day Ten ***********************************
+1.I have finish the form validation and buttom command in Employee Add tab, And also finish this tab
+2.in 24 Hours I will start the Employee Home Tab
+*************************** Day Eleven ***********************************
+1. I have finish the Employee home tab
+2. in 24 hours I will do the Employee Edit Tab

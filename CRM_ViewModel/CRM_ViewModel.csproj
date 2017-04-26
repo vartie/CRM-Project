@@ -46,6 +46,7 @@
     <Compile Include="Commands\AddEmployeeCommand.cs" />
     <Compile Include="Commands\ClearAddEmployeeFormCommand.cs" />
     <Compile Include="Commands\OpenFileInAddEmployeeTabCommand.cs" />
+    <Compile Include="EmployeeHomeTabViewModel.cs" />
     <Compile Include="EmployeesAddTabViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
