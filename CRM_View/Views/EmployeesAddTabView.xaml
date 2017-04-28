@@ -231,7 +231,7 @@
         <Button x:Name="btnAddEmployee" Content="Add Employee" HorizontalAlignment="Left" Margin="687,447,0,0" VerticalAlignment="Top" Width="246" Height="26" Command="{Binding AddEmployee}" />
         <Button x:Name="btnClearAddEmployeeForm" Content="Clear The Form" HorizontalAlignment="Left" Margin="687,494,0,0" VerticalAlignment="Top" Width="246" Height="26" Command="{Binding ClearCommand}"/>
         <Border Name="brdEmployeeImage" BorderThickness="2" BorderBrush="#FF000000" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="687,44,0,0" Height="151.2" Width="151.2">
-            <Image x:Name="imgEmployeeImage" HorizontalAlignment="Left" VerticalAlignment="Stretch" Stretch="Fill" Margin="-1.6,-1.6,-2.2,1.2" Width="151" Source="{Binding Image , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <Image x:Name="imgEmployeeImage" HorizontalAlignment="Left" VerticalAlignment="Stretch" Stretch="Fill" Margin="-1.6,-1.6,-2.2,1.2" Width="151" Source="{Binding ImageSource , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         </Border>
         <Button x:Name="btnEmployeeUploadImage" Content="Upload Image" HorizontalAlignment="Left" Margin="687,225,0,0" VerticalAlignment="Top" Width="151" Height="38" Command="{Binding OpenCommand}" />
         <Label x:Name="lblNotes" Content="Notes:" HorizontalAlignment="Left" Margin="687,297,0,0" VerticalAlignment="Top" Width="151" FontSize="15" Foreground="Red"/>

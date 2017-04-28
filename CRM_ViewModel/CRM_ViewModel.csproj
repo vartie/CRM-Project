@@ -34,6 +34,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,7 +46,10 @@
   <ItemGroup>
     <Compile Include="Commands\AddEmployeeCommand.cs" />
     <Compile Include="Commands\ClearAddEmployeeFormCommand.cs" />
+    <Compile Include="Commands\DeletePopupMenuHomeEmployeeTabCommand.cs" />
+    <Compile Include="Commands\EditEmployeeCommand.cs" />
     <Compile Include="Commands\OpenFileInAddEmployeeTabCommand.cs" />
+    <Compile Include="EmployeeEditTabViewModel.cs" />
     <Compile Include="EmployeeHomeTabViewModel.cs" />
     <Compile Include="EmployeesAddTabViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -59,6 +63,9 @@
       <Project>{41b42d56-32ef-4c43-8376-fcf4afb821ca}</Project>
       <Name>CRM_Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

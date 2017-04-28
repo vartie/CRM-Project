@@ -42,13 +42,16 @@
                         <TabItem Header="Home" Width="100">
                             <View:EmployeeHomeTabView x:Name = "EmployeesHomeTabView" Margin="0,1,0.4,285"/>
                         </TabItem>
-                        <TabItem Header="Monitor" Width="100"/>
                         <TabItem Header="Add" Width="100">
                             <Grid>
                                 <View:EmployeesAddTabView x:Name = "EmployeesAddTabView" Margin="0,1,0.4,285"/>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="Edit" Width="100"/>
+                        <TabItem Header="Edit" Width="100">
+                            <Grid>
+                                <View:EmployeeEditTabView x:Name = "EmployeeEditTabView" Margin="0,1,0.4,285"/>
+                            </Grid>
+                        </TabItem>
                     </TabControl>
                 </Grid>
             </TabItem>

@@ -41,3 +41,26 @@ finish the MVVM Tutorial and start implementing MVVM into project.
 *************************** Day Eleven ***********************************
 1. I have finish the Employee home tab
 2. in 24 hours I will do the Employee Edit Tab
+*************************** Day Towelve ***********************************
+1. I have finished the Employee Home Tab
+2.in 24 hours I will start employee Edit tab and messaging Control in Views.
+3. A lot of question about Messaging controls.
+*************************** Day thirteen ***********************************
+1. I have finished both Messaging Control And Employee Edit Tab 
+2. in 24 hours I will start Customer Model And its related Tab.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

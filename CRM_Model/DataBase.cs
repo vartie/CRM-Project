@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -44,10 +45,10 @@ namespace CRM_Model
             cmd.CommandType = CommandType.Text;
             cmd.ExecuteNonQuery();
         }
-
-        public List<Employee> getAllEmployee()
+        //retrive All Employees from Database
+        public ObservableCollection<Employee> getAllEmployee()
         {
-            List<Employee> EmployeeList = new List<Employee>();
+            ObservableCollection<Employee> EmployeeList = new ObservableCollection<Employee>();
 
             using (SqlCommand cmd = new SqlCommand("SELECT * FROM Employee", conn))
 
@@ -80,6 +81,43 @@ namespace CRM_Model
                 }
             }
             return EmployeeList;
+        }
+
+        //Delete Employee by User Id
+        public void deleteEmployeeById(int id)
+        {
+            SqlCommand cmd = new SqlCommand("DELETE FROM Employee WHERE Id=@Id", conn);
+            cmd.Parameters.Add("@Id", SqlDbType.Int).Value = id;
+            cmd.ExecuteNonQuery();
+        }
+
+        //Update Employee
+        public void updateEmployee(Employee e)
+        {
+            SqlCommand cmd = new SqlCommand("UPDATE Employee SET FName=@FName,LName=@LName,BirthDate=@BirthDate,HiredDate=@HiredDate,StreetNo=@StreetNo,StreetName=@StreetName,AppNo=@AppNo,Municipality=@Municipality,City=@City,Province=@Province,PostalCode=@PostalCode,Country=@Country,Email=@Email,Phone=@Phone,Rank=@Rank,Title=@Title,SalaryPerHour=@SalaryPerHour,UserName=@UserName,Password=@Password,Image=@Image WHERE Id=@Id", conn);
+            cmd.Parameters.Add("@Fname", SqlDbType.VarChar).Value = e.Fname;
+            cmd.Parameters.Add("@Lname", SqlDbType.VarChar).Value = e.Lname;
+            cmd.Parameters.Add("@BirthDate", SqlDbType.DateTime).Value = e.BirthDate;
+            cmd.Parameters.Add("@HiredDate", SqlDbType.DateTime).Value = e.HiredDate;
+            cmd.Parameters.Add("@StreetNo", SqlDbType.Int).Value = e.StreetNo;
+            cmd.Parameters.Add("@StreetName", SqlDbType.VarChar).Value = e.StreetName;
+            cmd.Parameters.Add("@AppNo", SqlDbType.Int).Value = e.AppNo;
+            cmd.Parameters.Add("@Municipality", SqlDbType.VarChar).Value = e.Municipality;
+            cmd.Parameters.Add("@City", SqlDbType.VarChar).Value = e.City;
+            cmd.Parameters.Add("@Province", SqlDbType.Char).Value = e.Province;
+            cmd.Parameters.Add("@PostalCode", SqlDbType.VarChar).Value = e.PostalCode;
+            cmd.Parameters.Add("@Country", SqlDbType.VarChar).Value = e.Country;
+            cmd.Parameters.Add("@Email", SqlDbType.VarChar).Value = e.Email;
+            cmd.Parameters.Add("@Phone", SqlDbType.VarChar).Value = e.Phone;
+            cmd.Parameters.Add("@Rank", SqlDbType.Char).Value = e.Rank;
+            cmd.Parameters.Add("@Title", SqlDbType.VarChar).Value = e.Title;
+            cmd.Parameters.Add("@SalaryPerHour", SqlDbType.Decimal).Value = e.SalaryPerHour;
+            cmd.Parameters.Add("@UserName", SqlDbType.VarChar).Value = e.UserName;
+            cmd.Parameters.Add("@Password", SqlDbType.VarChar).Value = e.Password;
+            cmd.Parameters.Add("@Image", SqlDbType.Image).Value = e.Image;
+            cmd.Parameters.Add("@Id", SqlDbType.Int).Value = e.Id;
+            cmd.CommandType = CommandType.Text;
+            cmd.ExecuteNonQuery();
         }
     }
 }

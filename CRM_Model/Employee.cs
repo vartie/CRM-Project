@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CRM_Model
 {
-    public class Employee
+    public class Employee 
     {
         private int _Id;
         private string _Fname;
@@ -165,5 +166,6 @@ namespace CRM_Model
             get { return _Image; }
             set { _Image = value; }
         }
+
     }
 }

@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="BirthDateValidationRule.cs" />
     <Compile Include="EmailValidationRule.cs" />
+    <Compile Include="EmployeeAddedMessage.cs" />
     <Compile Include="EmptyEntryValidationRule.cs" />
     <Compile Include="HiredDateValidationRule.cs" />
     <Compile Include="LetPasswordBoxToBind.cs" />

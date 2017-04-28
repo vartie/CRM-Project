@@ -1,25 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CRM_ExtraSelfDesignLibraries;
 using System.Collections.ObjectModel;
 using System.Windows;
 using Microsoft.Win32;
 using System.IO;
 using System.Windows.Media.Imaging;
-using System.Windows.Media;
 using CRM_ViewModel.Commands;
-using System.Diagnostics;
 using CRM_Model;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 
 namespace CRM_ViewModel
 {
-    
+
     public class EmployeesAddTabViewModel
     {
         public OpenFileInAddEmployeeTabCommand OpenCommand { get; set; }
@@ -27,6 +21,7 @@ namespace CRM_ViewModel
         public AddEmployeeCommand AddEmployee { get; set; }
         DataBase DB;
         MyValidations check;
+
 
         //All the Fields
         private int _Id;
@@ -41,7 +36,7 @@ namespace CRM_ViewModel
         private string _City;
         private string _Province;
         private string _PostalCode;
-        private string _Country= "Canada";
+        private string _Country = "Canada";
         private string _Email;
         private string _Phone;
         private char _Rank;
@@ -57,10 +52,10 @@ namespace CRM_ViewModel
         //viewModel Constructor 
         public EmployeesAddTabViewModel()
         {
-            this.Provinces = new ObservableCollection<string>() {"Ontario(ON)","Quebec(QC)","Nova Scotia(NS)","New Brunswick(NB)","Manitoba(MB)","British Columbia(BC)", "Prince Edward Island(PE)" , "Saskatchewan(SK)" , "Alberta(AB)" , "Newfoundland(NL)" };
+            this.Provinces = new ObservableCollection<string>() { "Ontario(ON)", "Quebec(QC)", "Nova Scotia(NS)", "New Brunswick(NB)", "Manitoba(MB)", "British Columbia(BC)", "Prince Edward Island(PE)", "Saskatchewan(SK)", "Alberta(AB)", "Newfoundland(NL)" };
             this.Ranks = new ObservableCollection<char>() { 'A', 'B', 'C', 'D', 'E', 'F' };
             this.Titles = new ObservableCollection<string> { "IT Administrator", "Consultant", "Marketing Advisor", "Dep. Manager", "Acountant" };
-            ImageSource  = new BitmapImage(new Uri(@"C:\Users\vartie\Desktop\CRM_View\CRM_View\Images\personal.png"));
+            ImageSource = new BitmapImage(new Uri(@"C:\Users\vartie\Desktop\CRM_View\CRM_View\Images\personal.png"));
             this.BirthDate = DateTime.Parse("1900/01/01");
             this.HiredDate = DateTime.Now;
             this.OpenCommand = new OpenFileInAddEmployeeTabCommand(this);
@@ -104,7 +99,7 @@ namespace CRM_ViewModel
                 {
                     _lname = value;
                     RaisePropertyChanged("LastName");
-                }              
+                }
             }
         }
         public DateTime BirthDate
@@ -116,7 +111,7 @@ namespace CRM_ViewModel
                 {
                     _BirthDate = value;
                     RaisePropertyChanged("BirthDate");
-                }               
+                }
             }
 
         }
@@ -125,11 +120,11 @@ namespace CRM_ViewModel
             get { return _HiredDate; }
             set
             {
-                if (_HiredDate != value )
+                if (_HiredDate != value)
                 {
                     _HiredDate = value;
                     RaisePropertyChanged("HiredDate");
-                }               
+                }
             }
         }
         public int StreetNo
@@ -141,7 +136,7 @@ namespace CRM_ViewModel
                 {
                     _StreetNo = value;
                     RaisePropertyChanged("StreetNo");
-                }               
+                }
             }
 
         }
@@ -150,11 +145,11 @@ namespace CRM_ViewModel
             get { return _StreetName; }
             set
             {
-                if (_StreetName != value )
+                if (_StreetName != value)
                 {
                     _StreetName = value;
                     RaisePropertyChanged("StreetName");
-                }               
+                }
             }
         }
         public int AppNo
@@ -166,7 +161,7 @@ namespace CRM_ViewModel
                 {
                     _AppNo = value;
                     RaisePropertyChanged("AppNo");
-                }             
+                }
             }
         }
         public string Municipality
@@ -174,11 +169,11 @@ namespace CRM_ViewModel
             get { return _Municipality; }
             set
             {
-                if (_Municipality != value )
+                if (_Municipality != value)
                 {
                     _Municipality = value;
                     RaisePropertyChanged("Municipality");
-                }               
+                }
             }
         }
         public string City
@@ -186,11 +181,11 @@ namespace CRM_ViewModel
             get { return _City; }
             set
             {
-                if (_City != value )
+                if (_City != value)
                 {
                     _City = value;
                     RaisePropertyChanged("City");
-                }               
+                }
             }
         }
         public ObservableCollection<string> Provinces { get; }
@@ -215,13 +210,13 @@ namespace CRM_ViewModel
                 {
                     _PostalCode = value;
                     RaisePropertyChanged("PostalCode");
-                }              
+                }
             }
         }
         public string Country
         {
             get { return _Country; }
-   
+
         }
         public string Email
         {
@@ -232,7 +227,7 @@ namespace CRM_ViewModel
                 {
                     _Email = value;
                     RaisePropertyChanged("Email");
-                }             
+                }
             }
         }
         public string Phone
@@ -240,11 +235,11 @@ namespace CRM_ViewModel
             get { return _Phone; }
             set
             {
-                if (_Phone != value )
+                if (_Phone != value)
                 {
                     _Phone = value;
                     RaisePropertyChanged("Phone");
-                }             
+                }
             }
         }
         public ObservableCollection<char> Ranks { get; }
@@ -302,11 +297,11 @@ namespace CRM_ViewModel
             get { return _Password; }
             set
             {
-                if (_Password != value )
+                if (_Password != value)
                 {
                     _Password = value;
                     RaisePropertyChanged("Password");
-                }               
+                }
             }
         }
         public string ConfirmPassword
@@ -319,7 +314,7 @@ namespace CRM_ViewModel
                     _ConfirmPassword = value;
                     RaisePropertyChanged("ConfirmPassword");
                 }
-               
+
             }
         }
         public byte[] Image
@@ -331,12 +326,12 @@ namespace CRM_ViewModel
                 {
                     _Image = value;
                     RaisePropertyChanged("Image");
-                }               
+                }
             }
         }
         public BitmapImage ImageSource
         {
-            get {return _ImageSource; }
+            get { return _ImageSource; }
 
             set
             {
@@ -359,6 +354,7 @@ namespace CRM_ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(property));
             }
         }
+
         // Button upload Image clicked
         public void btnUpload_Click()
         {
@@ -370,15 +366,15 @@ namespace CRM_ViewModel
             if (op.ShowDialog() == true)
             {
                 try
-                {                  
+                {
                     string strFn = op.FileName;
-                    //ImageSource = new BitmapImage(new Uri(strFn));             
+                    ImageSource = new BitmapImage(new Uri(strFn));
                     FileInfo fiImage = new FileInfo(strFn);
                     this.m_lImageFileLength = fiImage.Length;
                     FileStream fs = new FileStream(strFn, FileMode.Open, FileAccess.Read, FileShare.Read);
                     Image = new byte[Convert.ToInt32(this.m_lImageFileLength)];
-                   // ImageSource = byteArrayToImage(Image);
-                   int iBytesRead = fs.Read(Image, 0, Convert.ToInt32(this.m_lImageFileLength));
+                    // ImageSource = byteArrayToImage(Image);
+                    int iBytesRead = fs.Read(Image, 0, Convert.ToInt32(this.m_lImageFileLength));
                     fs.Close();
                 }
                 catch (Exception ex)
@@ -410,13 +406,13 @@ namespace CRM_ViewModel
             //Validate the Birth Date
             if (!check.IsValidBirthDay(BirthDate) || check.IsNullOrEmptyEntry(BirthDate))
             {
-                MessageBox.Show("Please Enter a valid Birth Date!", "Birth Date Error", MessageBoxButton.OK, MessageBoxImage.Warning);              
+                MessageBox.Show("Please Enter a valid Birth Date!", "Birth Date Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             // Validate the hired date
-            if (!check.IsValidHiredDay(HiredDate)||check.IsNullOrEmptyEntry(HiredDate))
+            if (!check.IsValidHiredDay(HiredDate) || check.IsNullOrEmptyEntry(HiredDate))
             {
-                MessageBox.Show("Please Enter a valid Hired Date!", "Hired Date Error", MessageBoxButton.OK, MessageBoxImage.Warning);               
+                MessageBox.Show("Please Enter a valid Hired Date!", "Hired Date Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             //Validate the Street Number
@@ -494,7 +490,7 @@ namespace CRM_ViewModel
                 return;
             }
             //Verify the password
-            if (ConfirmPassword != Password )
+            if (ConfirmPassword != Password)
             {
                 MessageBox.Show("Both Entry Password is not match!", "Password Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
@@ -504,10 +500,11 @@ namespace CRM_ViewModel
             {
                 MessageBox.Show("Please Upload An Image!", "Image Missing", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
-            }         
-                Employee em = new Employee(0, FirstName, LastName, BirthDate, HiredDate, StreetNo, StreetName, AppNo, Municipality, City, Province, PostalCode, Country, Email, Phone, Rank, Title, SalaryPerHour, UserName, Password, Image);
-                DB.addEmployee(em);
-                MessageBox.Show("Employee Added Successfully.", "Employee Added", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            Employee em = new Employee(0, FirstName, LastName, BirthDate, HiredDate, StreetNo, StreetName, AppNo, Municipality, City, Province, PostalCode, Country, Email, Phone, Rank, Title, SalaryPerHour, UserName, Password, Image);
+            DB.addEmployee(em);
+            EmployeeAddedMessage.Default.Send(em);
+            MessageBox.Show("Employee Added Successfully.", "Employee Added", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         // Reset All Properties
         private void ResetAllProperties()
@@ -530,6 +527,8 @@ namespace CRM_ViewModel
             ConfirmPassword = "";
             ImageSource = new BitmapImage(new Uri(@"C:\Users\vartie\Desktop\CRM_View\CRM_View\Images\personal.png"));
         }
+        
+        
         //Convert byte[] to BitmapImage
         private BitmapImage byteArrayToImage(byte[] array)
         {

@@ -4,18 +4,23 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CRM_View.Views"
-             xmlns:viewModel = "clr-namespace:CRM_ViewModel;assembly=CRM_ViewModel"
-             mc:Ignorable="d"  >
+             xmlns:viewModel = "clr-namespace:CRM_ViewModel;assembly=CRM_ViewModel"            
+             mc:Ignorable="d" Height="523.2" Width="1252">
     <UserControl.DataContext>
         <viewModel:EmployeeHomeTabViewModel/>
     </UserControl.DataContext>
-    <Grid Height="565" Width="1200">
+    <Grid Margin="0,0,0.4,0.8">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <TextBox x:Name="tbSearchEmployeeByName" VerticalAlignment="Top" HorizontalAlignment="Left" Height="34" Margin="0,5,0,0" TextWrapping="Wrap" Text="{Binding SearchEmployee , Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}" Width="750" Grid.ColumnSpan="2" />
         <ListView VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,43,0,0" Name="lvEmployees" Width="750" SelectionMode="Single" ItemsSource = "{Binding Employees , Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedEmployee, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="401" Grid.ColumnSpan="2" >
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Delete" Command="{Binding DeleteCommand}"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="First Name" Width="150" DisplayMemberBinding="{Binding Fname}" />
@@ -35,7 +40,7 @@
         <Label x:Name="lblHired" Content="Hired Date:" Grid.Column="1" HorizontalAlignment="Left" Margin="761.2,136,0,0" VerticalAlignment="Top" Width="84"/>
         <Label x:Name="lblHiredContent" Content="{Binding SelectedEmployee.HiredDate}" Grid.Column="1" HorizontalAlignment="Left" Margin="852.2,136,-106.6,0" VerticalAlignment="Top" Width="112" Foreground="BlueViolet"/>
         <Label x:Name="lblFullAddress" Content="Address:" Grid.Column="1" HorizontalAlignment="Left" Margin="761.2,204,0,0" VerticalAlignment="Top" Width="84"/>
-        <Label x:Name="lblFullAddressContent" Content="{Binding FullAddress}" Grid.Column="1" HorizontalAlignment="Left" Margin="852.2,204,-12.4,0" VerticalAlignment="Top" Width="329" Foreground="BlueViolet"/>
+        <Label x:Name="lblFullAddressContent" Content="{Binding FullAddress , Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" HorizontalAlignment="Left" Margin="852.2,204,-11.6,0" VerticalAlignment="Top" Width="329" Foreground="BlueViolet" Height="26"/>
         <Label x:Name="lblEmail" Content="Email:" Grid.Column="1" HorizontalAlignment="Left" Margin="761.2,235,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.099,0.492" Width="84"/>
         <Label x:Name="lblEmailContent" Content="{Binding SelectedEmployee.Email}" Grid.Column="1" HorizontalAlignment="Left" Margin="852.2,235,0,0" VerticalAlignment="Top" Width="200" Foreground="BlueViolet"/>
         <Label x:Name="lblPhone" Content="Phone:" Grid.Column="1" HorizontalAlignment="Left" Margin="761.2,266,0,0" VerticalAlignment="Top" Width="84"/>
