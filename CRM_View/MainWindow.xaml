@@ -5,9 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CRM_View"
         xmlns:View = "clr-namespace:CRM_View.Views"
+        xmlns:ViewModel ="clr-namespace:CRM_ViewModel;assembly=CRM_ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" MinHeight="370" MinWidth="860" Height="1050" Width="1580" WindowState="Maximized" WindowStartupLocation="CenterScreen">
-
+    <Window.DataContext>
+        <ViewModel:MainWindowViewModel/>
+    </Window.DataContext>
     <Grid Margin="0,0,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -44,7 +47,7 @@
                         </TabItem>
                         <TabItem Header="Add" Width="100">
                             <Grid>
-                                <View:EmployeesAddTabView x:Name = "EmployeesAddTabView" Margin="0,1,0.4,285"/>
+                                <View:EmployeesAddTabView x:Name = "EmployeesAddTabView" Margin="10,10,76.4,287"/>
                             </Grid>
                         </TabItem>
                         <TabItem Header="Edit" Width="100">
@@ -55,7 +58,55 @@
                     </TabControl>
                 </Grid>
             </TabItem>
-            <TabItem Header="Customers" Width="150" FontSize="15" />
+            <TabItem Header="Customers" Width="150" FontSize="15" >
+                <Grid>
+                    <TabControl Margin="0,0,28,0">
+                        <TabItem Header="Home" Width="100">
+                            <View:CustomerHomeTabView x:Name = "CustomerHomeTabView" Margin="10,10,76.4,287"/>
+                        </TabItem>
+                        <TabItem Header="Add" Width="100">
+                            <Grid>
+                                <View:CustomerAddTabView x:Name = "CustomerAddTabView" Margin="10,10,76.4,287"/>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Edit" Width="100">
+                            <Grid>
+                                <View:CustomerEditTabView x:Name = "CustomerEditTabView" Margin="10,10,76.4,287"/>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Orders" Width="100">
+                            <Grid>
+
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Place Order" Width="150">
+                            <Grid>
+
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Products" Width="150" FontSize="15">
+                <Grid>
+                    <TabControl Margin="0,0,28,0">
+                        <TabItem Header="Home" Width="100">
+                            <View:ProductView x:Name = "ProductView" Margin="0,1,0.4,285"/>
+                        </TabItem>
+                        <!--<TabItem Header="Add" Width="100">
+                            <Grid>
+                                <View:EmployeesAddTabView x:Name = "EmployeesAddTabView" Margin="10,10,76.4,287"/>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Edit" Width="100">
+                            <Grid>
+                                <View:EmployeeEditTabView x:Name = "EmployeeEditTabView" Margin="0,1,0.4,285"/>
+                            </Grid>
+                        </TabItem>-->
+                    </TabControl>
+                </Grid>
+
+            </TabItem>
         </TabControl>
 
     </Grid>

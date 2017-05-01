@@ -1,29 +1,36 @@
 ﻿using CRM_ExtraSelfDesignLibraries;
 using CRM_Model;
 using CRM_ViewModel.Commands;
+using Microsoft.Win32;
 using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Data.SqlClient;
+using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace CRM_ViewModel
 {
     public class EmployeeEditTabViewModel
     {
+        //All Commands
+        public EditEmployeeCommand UpdateCommand { get; set; }
+        public OpenFileInEditEmployeeTabCommand OpenCommand { get; set; }
         //All Fields
         DataBase DB;
         private string _SearchEmployee;
         private ObservableCollection<Employee> _Employees;
-        private Employee _SelectedEmployee;
-        public EditEmployeeCommand UpdateCommand { get; set; }
-    MyValidations check;
+        private Employee _SelectedEmployee;        
+        MyValidations check;
         private string _ConfirmPassword;
+        private BitmapImage _ImageSource;
+        private long m_lImageFileLength = 0;
         //Temprory List
         ObservableCollection<Employee> tempList = new ObservableCollection<Employee>();
-
+        
         // All Properties
         public string SearchEmployee
         {
@@ -99,7 +106,21 @@ namespace CRM_ViewModel
 
             }
         }
+        public BitmapImage ImageSource
+        {
+            get { return _ImageSource; }
 
+            set
+            {
+                if (_ImageSource != value)
+                {
+                    _ImageSource = value;
+                    RaisePropertyChanged("ImageSource");
+                }
+            }
+        }
+
+        //Construvtor
         public EmployeeEditTabViewModel()
         {
             //Register for messages from different viewModels
@@ -110,13 +131,14 @@ namespace CRM_ViewModel
             //Initialize comopents with some values
             Employees = new ObservableCollection<Employee>();
 
-            //Register CollectionChangedEvent for the OrderItems
+            //Register CollectionChangedEvent for the Employees
             Employees.CollectionChanged += ContentCollectionChanged;
 
             this.Provinces = new ObservableCollection<string>() { "Ontario(ON)", "Quebec(QC)", "Nova Scotia(NS)", "New Brunswick(NB)", "Manitoba(MB)", "British Columbia(BC)", "Prince Edward Island(PE)", "Saskatchewan(SK)", "Alberta(AB)", "Newfoundland(NL)" };
             this.Ranks = new ObservableCollection<char>() { 'A', 'B', 'C', 'D', 'E', 'F' };
             this.Titles = new ObservableCollection<string> { "IT Administrator", "Consultant", "Marketing Advisor", "Dep. Manager", "Acountant" };
             this.UpdateCommand = new EditEmployeeCommand(this);
+            this.OpenCommand = new OpenFileInEditEmployeeTabCommand(this);
             check = new MyValidations();
             try
             {
@@ -161,7 +183,13 @@ namespace CRM_ViewModel
         //When the message recived 
         private void ReceiveMessage(Employee employee)
         {
-            Employees.Add(employee);
+            Employees.Clear();
+            tempList.Clear();
+            tempList = DB.getAllEmployee();
+            foreach (Employee e in tempList)
+            {
+                Employees.Add(e);
+            }
         }
 
         //Buttom Update Clicked
@@ -277,10 +305,40 @@ namespace CRM_ViewModel
                 MessageBox.Show("Please Upload An Image!", "Image Missing", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            Employee em = new Employee(0, SelectedEmployee.Fname, SelectedEmployee.Lname, SelectedEmployee.BirthDate, SelectedEmployee.HiredDate, SelectedEmployee.StreetNo, SelectedEmployee.StreetName, SelectedEmployee.AppNo, SelectedEmployee.Municipality, SelectedEmployee.City, SelectedEmployee.Province, SelectedEmployee.PostalCode, SelectedEmployee.Country, SelectedEmployee.Email, SelectedEmployee.Phone, SelectedEmployee.Rank, SelectedEmployee.Title, SelectedEmployee.SalaryPerHour, SelectedEmployee.UserName, SelectedEmployee.Password, SelectedEmployee.Image);
+            Employee em = new Employee(SelectedEmployee.Id, SelectedEmployee.Fname, SelectedEmployee.Lname, SelectedEmployee.BirthDate, SelectedEmployee.HiredDate, SelectedEmployee.StreetNo, SelectedEmployee.StreetName, SelectedEmployee.AppNo, SelectedEmployee.Municipality, SelectedEmployee.City, SelectedEmployee.Province, SelectedEmployee.PostalCode, SelectedEmployee.Country, SelectedEmployee.Email, SelectedEmployee.Phone, SelectedEmployee.Rank, SelectedEmployee.Title, SelectedEmployee.SalaryPerHour, SelectedEmployee.UserName, SelectedEmployee.Password, SelectedEmployee.Image);
             DB.updateEmployee(em);
             EmployeeAddedMessage.Default.Send(em);
             MessageBox.Show("Employee Updated Successfully.", "Employee Update", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        // Button upload Image clicked
+        public void btnUpload_Click()
+        {
+            OpenFileDialog op = new OpenFileDialog();
+            op.Title = "Select a picture";
+            op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
+              "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
+              "Portable Network Graphic (*.png)|*.png";
+            if (op.ShowDialog() == true)
+            {
+                try
+                {
+                    string strFn = op.FileName;
+                    ImageSource = new BitmapImage(new Uri(strFn));
+                    RaisePropertyChanged("ImageSource");
+                    FileInfo fiImage = new FileInfo(strFn);
+                    this.m_lImageFileLength = fiImage.Length;
+                    FileStream fs = new FileStream(strFn, FileMode.Open, FileAccess.Read, FileShare.Read);
+                    SelectedEmployee.Image = new byte[Convert.ToInt32(this.m_lImageFileLength)];
+                    // ImageSource = byteArrayToImage(Image);
+                    int iBytesRead = fs.Read(SelectedEmployee.Image, 0, Convert.ToInt32(this.m_lImageFileLength));
+                    fs.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
     }
 }

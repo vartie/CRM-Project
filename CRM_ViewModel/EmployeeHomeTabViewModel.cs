@@ -18,7 +18,6 @@ namespace CRM_ViewModel
         private string _SearchEmployee;
         private ObservableCollection<Employee> _Employees;
         private Employee _SelectedEmployee;
-        private string _FullAddress;
         //Temprory List
         ObservableCollection<Employee> tempList = new ObservableCollection<Employee>();
 
@@ -78,26 +77,10 @@ namespace CRM_ViewModel
                 {
                     _SelectedEmployee = value;
                     RaisePropertyChanged("SelectedEmployee");
-                    FullAddress = _SelectedEmployee.StreetNo.ToString() + "," + _SelectedEmployee.StreetName + "," + _SelectedEmployee.Municipality + "," + _SelectedEmployee.PostalCode + "," + _SelectedEmployee.City + "," + _SelectedEmployee.Province + "," + _SelectedEmployee.Country;
-                    RaisePropertyChanged("FullAddress");
                 }
             }
         }
-        public string FullAddress
-        {
-            get
-            {
-                return _FullAddress;
-            }
-            set
-            {
-                if (_FullAddress != value)
-                {
-                    _FullAddress = value;
-                    RaisePropertyChanged("FullAddress");
-                }
-            }
-        }
+       
 
         //Constructor
         public EmployeeHomeTabViewModel()
@@ -110,7 +93,7 @@ namespace CRM_ViewModel
             //Initialize comopents with some values
             Employees = new ObservableCollection<Employee>();
 
-            //Register CollectionChangedEvent for the OrderItems
+            //Register CollectionChangedEvent for the Employees
             Employees.CollectionChanged += ContentCollectionChanged;
 
             this.DeleteCommand = new DeletePopupMenuHomeEmployeeTabCommand(this);
@@ -122,7 +105,6 @@ namespace CRM_ViewModel
                 {
                     tempList.Add(e);
                 }
-                FullAddress = "Address";
             }
             catch (SqlException ex)
             {
@@ -158,7 +140,13 @@ namespace CRM_ViewModel
         //When the message recived 
         private void ReceiveMessage(Employee employee)
         {
-            Employees.Add(employee);
+            Employees.Clear();
+            tempList.Clear();
+            tempList = DB.getAllEmployee();
+            foreach (Employee e in tempList)
+            {
+                Employees.Add(e);
+            }
         }
 
         //Popup Delete buttom Clicked
@@ -170,7 +158,7 @@ namespace CRM_ViewModel
                 if (result == MessageBoxResult.Yes && SelectedEmployee.Id > 0)
                 {
                     DB.deleteEmployeeById(SelectedEmployee.Id);
-                    Employees.Remove(SelectedEmployee);
+                    EmployeeAddedMessage.Default.Send(SelectedEmployee);
                     MessageBox.Show("Employee deleted successfully.");
                     return;
                 }

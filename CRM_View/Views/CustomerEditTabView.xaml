@@ -1,0 +1,216 @@
+﻿<UserControl x:Class="CRM_View.Views.CustomerEditTabView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CRM_View.Views"
+             xmlns:ff= "clr-namespace:CRM_ExtraSelfDesignLibraries;assembly=CRM_ExtraSelfDesignLibraries"
+             xmlns:validators ="clr-namespace:CRM_ExtraSelfDesignLibraries;assembly=CRM_ExtraSelfDesignLibraries"
+             xmlns:viewModel = "clr-namespace:CRM_ViewModel;assembly=CRM_ViewModel"
+             mc:Ignorable="d" Height="528" Width="1526.8">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Validation.ErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <DockPanel LastChildFill="True">
+                            <TextBlock DockPanel.Dock="Right" 
+                        Foreground="Red"
+                        FontSize="12pt">
+                        *
+                            </TextBlock>
+                            <Border BorderBrush="Red" BorderThickness="1">
+                                <AdornedElementPlaceholder />
+                            </Border>
+                        </DockPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip"
+                Value="{Binding RelativeSource={RelativeSource Self}, 
+                       Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <UserControl.DataContext>
+        <viewModel:CustomerEditTabViewModel/>
+    </UserControl.DataContext>
+    <Grid  Margin="0,0,0.4,0.8">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="tbSearchCustomerByName" VerticalAlignment="Top" HorizontalAlignment="Left" Height="34" Margin="0,5,0,0" TextWrapping="Wrap" Text="{Binding SearchCustomer , Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}" Width="600" Grid.ColumnSpan="2" />
+        <ListView VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,43,0,0" Name="lvEmployees" Width="600" SelectionMode="Single" ItemsSource = "{Binding Customers , Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedCustomer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="401" Grid.ColumnSpan="2" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="First Name" Width="150" DisplayMemberBinding="{Binding Fname}" />
+                    <GridViewColumn Header="Last Name" Width="150" DisplayMemberBinding="{Binding Lname}" />
+                    <GridViewColumn Header="Email" Width="150" DisplayMemberBinding="{Binding Email}" />
+                    <GridViewColumn Header="Phone" Width="150" DisplayMemberBinding="{Binding Phone}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Label x:Name="lblCustomerFname" Content="First Name:" HorizontalAlignment="Left" Margin="615,45,0,0" VerticalAlignment="Top" Width="87"/>
+        <TextBox x:Name="tbCustomerFname" HorizontalAlignment="Left" Height="26" Margin="725,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" >
+            <TextBox.Text>
+                <Binding Path = "SelectedCustomer.Fname" Mode = "TwoWay" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validators:StringRangeValidationRule 
+                                    MinimumLength="3" 
+                                    MaximumLength="50"
+                                    ErrorMessage="At least 3 characters!" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <Label x:Name="lblCustomerLname" Content="Last name:" HorizontalAlignment="Left" Margin="615,95,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.5,-0.577" Width="87"/>
+        <TextBox x:Name="tbCustomerLname" HorizontalAlignment="Left" Height="23" Margin="725,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166">
+            <TextBox.Text>
+                <Binding Path = "SelectedCustomer.Lname" Mode = "TwoWay" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validators:StringRangeValidationRule 
+                                    MinimumLength="3" 
+                                    MaximumLength="50"
+                                    ErrorMessage="At least 3 characters!" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <Label x:Name="lblCustomerBirthDate" Content="Birth Date:" HorizontalAlignment="Left" Margin="615,145,0,0" VerticalAlignment="Top" Width="87"/>
+        <TextBox x:Name="tbCustomerBirthdate" HorizontalAlignment="Left" Height="23" Margin="725,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166">
+            <TextBox.Text>
+                <Binding Path = "SelectedCustomer.BirthDate" Mode = "TwoWay" StringFormat="yyyy/MM/dd" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validators:BirthDateValidationRule                                  
+                                    ErrorMessage="Invalid Date!" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <Label x:Name="lblCustomerHireddate" Content="Register Date:" HorizontalAlignment="Left" Margin="615,201,0,0" VerticalAlignment="Top" Width="87"/>
+        <TextBox x:Name="tbCustomerHireddate" HorizontalAlignment="Left" Height="27" Margin="725,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" >
+            <TextBox.Text>
+                <Binding Path = "SelectedCustomer.RegisterDate" Mode = "TwoWay"  StringFormat="yyyy/MM/dd" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validators:HiredDateValidationRule                                  
+                                    ErrorMessage="Invalid Date!" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <Label x:Name="lblCustomerStreetNo" Content="Street No.:" HorizontalAlignment="Left" Margin="615,261,0,0" VerticalAlignment="Top" Width="87"/>
+        <TextBox x:Name="tbCustomerStreetNo" HorizontalAlignment="Left" Height="25" Margin="725,261,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" PreviewTextInput="NumberValidationTextBox">
+            <TextBox.Text>
+                <Binding Path = "SelectedCustomer.StreetNo" Mode = "TwoWay" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validators:StringRangeValidationRule 
+                                    MinimumLength="3" 
+                                    MaximumLength="6"
+                                    ErrorMessage="At least 3 Digit!" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <Label x:Name="lblCustomerStreetName" Content="Street Name:" HorizontalAlignment="Left" Margin="615,309,0,0" VerticalAlignment="Top" Width="105"/>
+        <TextBox x:Name="tbvCustomerStreetName" HorizontalAlignment="Left" Height="28" Margin="725,311,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166">
+            <TextBox.Text>
+                <Binding Path = "SelectedCustomer.StreetName" Mode = "TwoWay" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validators:StringRangeValidationRule 
+                                    MinimumLength="3" 
+                                    MaximumLength="50"
+                                    ErrorMessage="At least 3 characters!" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <Label x:Name="lblCustomerAppNo" Content="App No. :" HorizontalAlignment="Left" Margin="615,366,0,0" VerticalAlignment="Top" Width="87" RenderTransformOrigin="0.517,1.385"/>
+        <TextBox x:Name="tbCustomerAppNo" HorizontalAlignment="Left" Height="26" Margin="725,366,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" PreviewTextInput="NumberValidationTextBox">
+            <TextBox.Text>
+                <Binding Path = "SelectedCustomer.AppNo" Mode = "TwoWay" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validators:StringRangeValidationRule 
+                                    MinimumLength="3" 
+                                    MaximumLength="6"
+                                    ErrorMessage="At least 3 Digit!" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <Label x:Name="lblCustomerMunicipality" Content="Municipality:" HorizontalAlignment="Left" Margin="951,261,0,0" VerticalAlignment="Top" Width="105" RenderTransformOrigin="0.517,1.385"/>
+        <TextBox x:Name="tbCustomerMunicipality" HorizontalAlignment="Left" Height="28" Margin="1043,258,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" Grid.ColumnSpan="2">
+            <TextBox.Text>
+                <Binding Path = "SelectedCustomer.Municipality" Mode = "TwoWay" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validators:StringRangeValidationRule 
+                                    MinimumLength="3" 
+                                    MaximumLength="50"
+                                    ErrorMessage="At least 3 characters!" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <Label x:Name="lblCustomerCity" Content="city:" HorizontalAlignment="Left" Margin="951,309,0,0" VerticalAlignment="Top" Width="87" RenderTransformOrigin="0.517,1.385"/>
+        <TextBox x:Name="tbCustomerCity" HorizontalAlignment="Left" Height="27" Margin="1043,312,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" Grid.ColumnSpan="2">
+            <TextBox.Text>
+                <Binding Path = "SelectedCustomer.City" Mode = "TwoWay" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validators:StringRangeValidationRule 
+                                    MinimumLength="3" 
+                                    MaximumLength="50"
+                                    ErrorMessage="At least 3 characters!" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <Label x:Name="lblCustomerProvince" Content="Province:" HorizontalAlignment="Left" Margin="951,366,0,0" VerticalAlignment="Top" Width="87" RenderTransformOrigin="0.517,1.385"/>
+        <ComboBox x:Name="cmbCustomerProvince" HorizontalAlignment="Left" Margin="1043,369,0,0" VerticalAlignment="Top" Width="166" ItemsSource="{Binding Provinces}" SelectedItem="{Binding SelectedCustomer.Province, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedIndex="0" Grid.ColumnSpan="2"/>
+        <Label x:Name="lblCustomerPostalcode" Content="Postalcode:" HorizontalAlignment="Left" Margin="951,45,0,0" VerticalAlignment="Top" Width="87" RenderTransformOrigin="0.517,1.385"/>
+        <TextBox x:Name="tbCustomerPostalcode" HorizontalAlignment="Left" Height="26" Margin="1043,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" Grid.ColumnSpan="2">
+            <TextBox.Text>
+                <Binding Path = "SelectedCustomer.PostalCode" Mode = "TwoWay" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validators:PostalCodeValidationRule 
+                                    MinimumLength="6" 
+                                    MaximumLength="7"
+                                    ErrorMessage="Invalid Postal Code!" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <Label x:Name="lblCustomerCountry" Content="Country:" HorizontalAlignment="Left" Margin="951,95,0,0" VerticalAlignment="Top" Width="87" RenderTransformOrigin="0.517,1.385"/>
+        <TextBox x:Name="tbCustomerCountry" HorizontalAlignment="Left" Height="27" Margin="1043,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" IsReadOnly="True" Grid.ColumnSpan="2">
+            <TextBox.Text>
+                <Binding Path = "SelectedCustomer.Country" Mode ="OneWay"  UpdateSourceTrigger="PropertyChanged">
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <Label x:Name="lblCustomerEmail" Content="Email:" HorizontalAlignment="Left" Margin="951,145,0,0" VerticalAlignment="Top" Width="87" RenderTransformOrigin="0.517,1.385"/>
+        <TextBox x:Name="tbCustomerEmail" HorizontalAlignment="Left" Height="30" Margin="1043,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" Grid.ColumnSpan="2">
+            <TextBox.Text>
+                <Binding Path = "SelectedCustomer.Email" Mode = "TwoWay" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validators:EmailValidationRule                                    
+                                    ErrorMessage="Invalid Email Address!" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <Label x:Name="lblCustomerPhone" Content="Cell/Home:" HorizontalAlignment="Left" Margin="951,201,0,0" VerticalAlignment="Top" Width="87" RenderTransformOrigin="0.517,1.385"/>
+        <TextBox x:Name="tbCustomerPhone" HorizontalAlignment="Left" Height="30" Margin="1043,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166" Grid.ColumnSpan="2" >
+            <TextBox.Text>
+                <Binding Path = "SelectedCustomer.Phone" Mode = "TwoWay" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validators:PhoneValidationRule                                    
+                                    ErrorMessage="Invalid Phone Number. 000-000-0000" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <Button x:Name="btnAddCustomer" Content="Edit Customer Info" HorizontalAlignment="Left" Margin="725,413,0,0" VerticalAlignment="Top" Width="484" Height="82" Command="{Binding EditCustomer}" FontSize="20" Grid.ColumnSpan="2"/>
+    </Grid>
+</UserControl>

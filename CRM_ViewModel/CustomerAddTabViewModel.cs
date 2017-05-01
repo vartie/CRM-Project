@@ -1,33 +1,32 @@
-﻿using System;
-using System.ComponentModel;
-using CRM_ExtraSelfDesignLibraries;
-using System.Collections.ObjectModel;
-using System.Windows;
-using Microsoft.Win32;
-using System.IO;
-using System.Windows.Media.Imaging;
-using CRM_ViewModel.Commands;
+﻿using CRM_ExtraSelfDesignLibraries;
 using CRM_Model;
+using CRM_ViewModel.Commands;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Windows;
 
 namespace CRM_ViewModel
 {
-
-    public class EmployeesAddTabViewModel
+    public class CustomerAddTabViewModel
     {
-        public OpenFileInAddEmployeeTabCommand OpenCommand { get; set; }
-        public ClearAddEmployeeFormCommand ClearCommand { get; set; }
-        public AddEmployeeCommand AddEmployee { get; set; }
         DataBase DB;
         MyValidations check;
+        public AddCustomerCommand AddCustomer { get; set; }
+
 
         //All the Fields
         private int _Id;
         private string _Fname;
         private string _lname;
         private DateTime _BirthDate;
-        private DateTime _HiredDate;
+        private DateTime _RegisterDate;
         private int _StreetNo;
         private string _StreetName;
         private int _AppNo;
@@ -38,28 +37,14 @@ namespace CRM_ViewModel
         private string _Country = "Canada";
         private string _Email;
         private string _Phone;
-        private char _Rank;
-        private string _Title;
-        private decimal _SalaryPerHour;
-        private string _UserName;
-        private string _Password;
-        private string _ConfirmPassword;
-        private byte[] _Image;
-        private BitmapImage _ImageSource;
-        private long m_lImageFileLength = 0;
 
         //viewModel Constructor 
-        public EmployeesAddTabViewModel()
+        public CustomerAddTabViewModel()
         {
             this.Provinces = new ObservableCollection<string>() { "Ontario(ON)", "Quebec(QC)", "Nova Scotia(NS)", "New Brunswick(NB)", "Manitoba(MB)", "British Columbia(BC)", "Prince Edward Island(PE)", "Saskatchewan(SK)", "Alberta(AB)", "Newfoundland(NL)" };
-            this.Ranks = new ObservableCollection<char>() { 'A', 'B', 'C', 'D', 'E', 'F' };
-            this.Titles = new ObservableCollection<string> { "IT Administrator", "Consultant", "Marketing Advisor", "Dep. Manager", "Acountant" };
-            ImageSource = new BitmapImage(new Uri(@"C:\Users\vartie\Desktop\CRM_View\CRM_View\Images\personal.png"));
             this.BirthDate = DateTime.Parse("1900/01/01");
-            this.HiredDate = DateTime.Now;
-            this.OpenCommand = new OpenFileInAddEmployeeTabCommand(this);
-            this.ClearCommand = new ClearAddEmployeeFormCommand(this);
-            this.AddEmployee = new AddEmployeeCommand(this);
+            this.RegisterDate = DateTime.Now;
+            this.AddCustomer = new AddCustomerCommand(this);
             check = new MyValidations();
             try
             {
@@ -70,6 +55,7 @@ namespace CRM_ViewModel
                 MessageBox.Show("There is a problem in Connecting to the DateBase!", "Connection Error", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+
         // Setters And Getters 
         public int Id
         {
@@ -114,15 +100,15 @@ namespace CRM_ViewModel
             }
 
         }
-        public DateTime HiredDate
+        public DateTime RegisterDate
         {
-            get { return _HiredDate; }
+            get { return _RegisterDate; }
             set
             {
-                if (_HiredDate != value)
+                if (_RegisterDate != value)
                 {
-                    _HiredDate = value;
-                    RaisePropertyChanged("HiredDate");
+                    _RegisterDate = value;
+                    RaisePropertyChanged("RegisterDate");
                 }
             }
         }
@@ -241,106 +227,6 @@ namespace CRM_ViewModel
                 }
             }
         }
-        public ObservableCollection<char> Ranks { get; }
-        public char Rank
-        {
-            get { return _Rank; }
-            set
-            {
-                if (_Rank != value)
-                {
-                    _Rank = value;
-                    RaisePropertyChanged("Rank");
-                }
-            }
-        }
-        public ObservableCollection<string> Titles { get; }
-        public string Title
-        {
-            get { return _Title; }
-            set
-            {
-                if (_Title != value)
-                {
-                    _Title = value;
-                    RaisePropertyChanged("Title");
-                }
-            }
-        }
-        public decimal SalaryPerHour
-        {
-            get { return _SalaryPerHour; }
-            set
-            {
-                if (_SalaryPerHour != value)
-                {
-                    _SalaryPerHour = value;
-                    RaisePropertyChanged("SalaryPerHour");
-                }
-            }
-        }
-        public string UserName
-        {
-            get { return _UserName; }
-            set
-            {
-                if (_UserName != value)
-                {
-                    _UserName = value;
-                    RaisePropertyChanged("UserName");
-                }
-            }
-        }
-        public string Password
-        {
-            get { return _Password; }
-            set
-            {
-                if (_Password != value)
-                {
-                    _Password = value;
-                    RaisePropertyChanged("Password");
-                }
-            }
-        }
-        public string ConfirmPassword
-        {
-            get { return _ConfirmPassword; }
-            set
-            {
-                if (_ConfirmPassword != value)
-                {
-                    _ConfirmPassword = value;
-                    RaisePropertyChanged("ConfirmPassword");
-                }
-
-            }
-        }
-        public byte[] Image
-        {
-            get { return _Image; }
-            set
-            {
-                if (_Image != value)
-                {
-                    _Image = value;
-                    RaisePropertyChanged("Image");
-                }
-            }
-        }
-        public BitmapImage ImageSource
-        {
-            get { return _ImageSource; }
-
-            set
-            {
-                if (_ImageSource != value)
-                {
-                    _ImageSource = value;
-                    RaisePropertyChanged("ImageSource");
-                }
-            }
-        }
 
         /// <summary>
         /// Property Change Event Handeller
@@ -354,42 +240,7 @@ namespace CRM_ViewModel
             }
         }
 
-        // Button upload Image clicked
-        public void btnUpload_Click()
-        {
-            OpenFileDialog op = new OpenFileDialog();
-            op.Title = "Select a picture";
-            op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
-              "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
-              "Portable Network Graphic (*.png)|*.png";
-            if (op.ShowDialog() == true)
-            {
-                try
-                {
-                    string strFn = op.FileName;
-                    ImageSource = new BitmapImage(new Uri(strFn));
-                    RaisePropertyChanged("ImageSource");
-                    FileInfo fiImage = new FileInfo(strFn);
-                    this.m_lImageFileLength = fiImage.Length;
-                    FileStream fs = new FileStream(strFn, FileMode.Open, FileAccess.Read, FileShare.Read);
-                    Image = new byte[Convert.ToInt32(this.m_lImageFileLength)];
-                    // ImageSource = byteArrayToImage(Image);
-                    int iBytesRead = fs.Read(Image, 0, Convert.ToInt32(this.m_lImageFileLength));
-                    fs.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-        }
-        //Button Clear Form clicked
-        public void btnClearForm_Click()
-        {
-            ResetAllProperties();
-        }
-        //Button Add Employee Clicked
-        public void btnAddEmployee_Click()
+        public void btnAddCustomer_Click()
         {
             //Validate the First name
             if (!check.IsValidString(FirstName))
@@ -410,9 +261,9 @@ namespace CRM_ViewModel
                 return;
             }
             // Validate the hired date
-            if (!check.IsValidHiredDay(HiredDate) || check.IsNullOrEmptyEntry(HiredDate))
+            if (!check.IsValidHiredDay(RegisterDate) || check.IsNullOrEmptyEntry(RegisterDate))
             {
-                MessageBox.Show("Please Enter a valid Hired Date!", "Hired Date Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Please Enter a valid Register Date!", "Hired Date Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             //Validate the Street Number
@@ -471,77 +322,12 @@ namespace CRM_ViewModel
                 MessageBox.Show("Please Enter a valid Phone!", "Phone Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            //Validate the Salary
-            if (check.IsNullOrEmptyEntry(SalaryPerHour))
-            {
-                MessageBox.Show("Please Enter a valid Salary!", "Salary Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-            //Validate the Username
-            if (!check.IsValidString(UserName))
-            {
-                MessageBox.Show("Please Enter a valid Username!", "Username Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-            //Validate the Password
-            if (!check.IsValidString(Password) || !check.IsValidPassword(Password))
-            {
-                MessageBox.Show("Please Enter a valid Password!", "Password Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-            //Verify the password
-            if (ConfirmPassword != Password)
-            {
-                MessageBox.Show("Both Entry Password is not match!", "Password Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-            //Validate the Image
-            if (Image == null || Image.Length == 0)
-            {
-                MessageBox.Show("Please Upload An Image!", "Image Missing", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-            Employee em = new Employee(0, FirstName, LastName, BirthDate, HiredDate, StreetNo, StreetName, AppNo, Municipality, City, Province, PostalCode, Country, Email, Phone, Rank, Title, SalaryPerHour, UserName, Password, Image);
-            DB.addEmployee(em);
-            EmployeeAddedMessage.Default.Send(em);
-            MessageBox.Show("Employee Added Successfully.", "Employee Added", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
-        // Reset All Properties
-        private void ResetAllProperties()
-        {
-            FirstName = "";
-            LastName = "";
-            BirthDate = DateTime.Parse("1900/01/01");
-            HiredDate = DateTime.Now;
-            StreetNo = 0;
-            StreetName = "";
-            AppNo = 0;
-            Municipality = "";
-            City = "";
-            PostalCode = "";
-            Email = "";
-            Phone = "";
-            SalaryPerHour = 0;
-            UserName = "";
-            Password = "";
-            ConfirmPassword = "";
-            ImageSource = new BitmapImage(new Uri(@"C:\Users\vartie\Desktop\CRM_View\CRM_View\Images\personal.png"));
-        }
+            
+            Customer cm = new Customer(0, FirstName, LastName, BirthDate, RegisterDate, StreetNo, StreetName, AppNo, Municipality, City, Province, PostalCode, Country, Email, Phone);
+            DB.addCustomer(cm);
+            CustomerAddedMessage.Default.Send(cm);
+            MessageBox.Show("Customer Added Successfully.", "Customer Added", MessageBoxButton.OK, MessageBoxImage.Information);
 
-
-        //Convert byte[] to BitmapImage
-        private BitmapImage byteArrayToImage(byte[] array)
-        {
-            using (var ms = new System.IO.MemoryStream(array))
-            {
-                var image = new BitmapImage();
-                image.BeginInit();
-                image.CacheOption = BitmapCacheOption.OnLoad; // here
-                image.StreamSource = ms;
-                image.EndInit();
-                return image;
-            }
         }
-
     }
 }

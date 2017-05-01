@@ -58,6 +58,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="LogIn.xaml.cs">
+      <DependentUpon>LogIn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CustomerAddTabView.xaml.cs">
+      <DependentUpon>CustomerAddTabView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CustomerEditTabView.xaml.cs">
+      <DependentUpon>CustomerEditTabView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CustomerHomeTabView.xaml.cs">
+      <DependentUpon>CustomerHomeTabView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\EmployeeEditTabView.xaml.cs">
       <DependentUpon>EmployeeEditTabView.xaml</DependentUpon>
     </Compile>
@@ -67,9 +79,16 @@
     <Compile Include="Views\EmployeesAddTabView.xaml.cs">
       <DependentUpon>EmployeesAddTabView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ProductView.xaml.cs">
+      <DependentUpon>ProductView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RibbonView.xaml.cs">
       <DependentUpon>RibbonView.xaml</DependentUpon>
     </Compile>
+    <Page Include="LogIn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -82,6 +101,18 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\CustomerAddTabView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CustomerEditTabView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CustomerHomeTabView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\EmployeeEditTabView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -91,6 +122,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\EmployeesAddTabView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProductView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -146,10 +181,21 @@
       <Project>{601e672f-6718-4f8a-9dcb-53c99b4a2263}</Project>
       <Name>CRM_ExtraSelfDesignLibraries</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CRM_Model\CRM_Model.csproj">
+      <Project>{41B42D56-32EF-4C43-8376-FCF4AFB821CA}</Project>
+      <Name>CRM_Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CRM_ViewModel\CRM_ViewModel.csproj">
       <Project>{41b940c5-84e6-4ffc-9497-7aa7b5d60830}</Project>
       <Name>CRM_ViewModel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\benefits-of-crm.jpg" />
+    <Resource Include="Images\CRM-features.png" />
+    <Resource Include="Images\CRM-features2.png" />
+    <Resource Include="Images\crm-software.png" />
+    <Resource Include="Images\crm-software2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

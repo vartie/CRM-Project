@@ -39,8 +39,35 @@
         <Label x:Name="lblBirthContent" Content="{Binding SelectedEmployee.BirthDate}" Grid.Column="1" HorizontalAlignment="Left" Margin="852.2,105,-113.8,0" VerticalAlignment="Top" Width="120" Foreground="BlueViolet"/>
         <Label x:Name="lblHired" Content="Hired Date:" Grid.Column="1" HorizontalAlignment="Left" Margin="761.2,136,0,0" VerticalAlignment="Top" Width="84"/>
         <Label x:Name="lblHiredContent" Content="{Binding SelectedEmployee.HiredDate}" Grid.Column="1" HorizontalAlignment="Left" Margin="852.2,136,-106.6,0" VerticalAlignment="Top" Width="112" Foreground="BlueViolet"/>
-        <Label x:Name="lblFullAddress" Content="Address:" Grid.Column="1" HorizontalAlignment="Left" Margin="761.2,204,0,0" VerticalAlignment="Top" Width="84"/>
-        <Label x:Name="lblFullAddressContent" Content="{Binding FullAddress , Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" HorizontalAlignment="Left" Margin="852.2,204,-11.6,0" VerticalAlignment="Top" Width="329" Foreground="BlueViolet" Height="26"/>
+        <Label x:Name="lblFullAddress1" Content="Address1:" Grid.Column="1" HorizontalAlignment="Left" Margin="761.2,167,0,0" VerticalAlignment="Top" Width="84"/>
+        <Label x:Name="lblFullAddress1Content" Grid.Column="1" HorizontalAlignment="Left" Margin="850.2,167,0,0" VerticalAlignment="Top" Width="229" Foreground="BlueViolet" Height="31">
+            <Label.Content>
+                <TextBlock>
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="#{0},{1},{2} ">
+                            <Binding Path="SelectedEmployee.AppNo" />
+                            <Binding Path="SelectedEmployee.StreetNo" />
+                            <Binding Path="SelectedEmployee.StreetName" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+            </Label.Content>
+        </Label>
+        <Label x:Name="lblFullAddress2" Content="Address2:" Grid.Column="1" HorizontalAlignment="Left" Margin="761.2,204,0,0" VerticalAlignment="Top" Width="84"/>
+        <Label x:Name="lblFullAddress2Content" Grid.Column="1" HorizontalAlignment="Left" Margin="852.2,204,-69,0" VerticalAlignment="Top" Width="388" Foreground="BlueViolet" Height="31">
+            <Label.Content>
+                <TextBlock>
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}{0},{1},{2},{3} ">
+                            <Binding Path="SelectedEmployee.Municipality" />
+                            <Binding Path="SelectedEmployee.PostalCode" />
+                            <Binding Path="SelectedEmployee.City" />
+                            <Binding Path="SelectedEmployee.Country" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+            </Label.Content>
+        </Label>
         <Label x:Name="lblEmail" Content="Email:" Grid.Column="1" HorizontalAlignment="Left" Margin="761.2,235,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.099,0.492" Width="84"/>
         <Label x:Name="lblEmailContent" Content="{Binding SelectedEmployee.Email}" Grid.Column="1" HorizontalAlignment="Left" Margin="852.2,235,0,0" VerticalAlignment="Top" Width="200" Foreground="BlueViolet"/>
         <Label x:Name="lblPhone" Content="Phone:" Grid.Column="1" HorizontalAlignment="Left" Margin="761.2,266,0,0" VerticalAlignment="Top" Width="84"/>
@@ -49,7 +76,7 @@
         <Label x:Name="lblRankContent" Content="{Binding SelectedEmployee.Rank}" Grid.Column="1" HorizontalAlignment="Left" Margin="852.2,297,0,0" VerticalAlignment="Top" Width="118" Foreground="BlueViolet"/>
         <Label x:Name="lblTitle" Content="Title:" Grid.Column="1" HorizontalAlignment="Left" Margin="761.2,328,0,0" VerticalAlignment="Top" Width="84"/>
         <Label x:Name="lblTitleContent" Content="{Binding SelectedEmployee.Title}" Grid.Column="1" HorizontalAlignment="Left" Margin="852.2,328,0,0" VerticalAlignment="Top" Width="112" Foreground="BlueViolet"/>
-        <Border Name="brdEmployeeImage" BorderThickness="2" BorderBrush="#FF000000" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="1030.2,43,-42,0" Height="151" Width="151" Grid.Column="1">
+        <Border Name="brdEmployeeImage" BorderThickness="2" BorderBrush="#FF000000" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="1084.2,43,-20.8,0" Height="151" Width="151" Grid.Column="1">
             <Image x:Name="imgEmployeeImage" HorizontalAlignment="Left" VerticalAlignment="Stretch" Stretch="Fill" Margin="-1.6,-1.6,-2.2,1.2" Width="151" Source="{Binding SelectedEmployee.Image}"/>
         </Border>
 

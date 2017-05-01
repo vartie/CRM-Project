@@ -243,9 +243,9 @@
         <PasswordBox x:Name="tbEmployeeVerifyPassword" HorizontalAlignment="Left" Height="23" Margin="759,484,0,0"  VerticalAlignment="Top" Width="166" PasswordChar="*" MaxLength="15" ff:LetPasswordBoxToBind.BindPassword="true"  ff:LetPasswordBoxToBind.BoundPassword="{Binding Path=ConfirmPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         <Button x:Name="btnUpdateEmployee" Content="Update Employee Info" HorizontalAlignment="Left" Margin="957,447,0,0" VerticalAlignment="Top" Width="246" Height="26" Command="{Binding UpdateCommand}" />
         <Border Name="brdEmployeeImage" BorderThickness="2" BorderBrush="#FF000000" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="957,43,0,0" Height="151" Width="151">
-            <Image x:Name="imgEmployeeImage" HorizontalAlignment="Left" VerticalAlignment="Stretch" Stretch="Fill" Margin="-1.6,-1.6,-2.2,1.2" Width="151" Source="{Binding SelectedEmployee.Image , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <Image x:Name="imgEmployeeImage" HorizontalAlignment="Left" VerticalAlignment="Stretch" Stretch="Fill" Margin="-1.6,-1.6,-2.2,1.2" Width="151" Source="{Binding SelectedEmployee.Image}"/>
         </Border>
-        <Button x:Name="btnEmployeeUploadImage" Content="Upload Image" HorizontalAlignment="Left" Margin="957,225,0,0" VerticalAlignment="Top" Width="151" Height="38" />
+        <Button x:Name="btnEmployeeUploadImage" Content="Upload Image" HorizontalAlignment="Left" Margin="957,225,0,0" VerticalAlignment="Top" Width="151" Height="38" Command="{Binding OpenCommand}" />
         <Label x:Name="lblNotes" Content="Notes:" HorizontalAlignment="Left" Margin="957,297,0,0" VerticalAlignment="Top" Width="151" FontSize="15" Foreground="Red"/>
         <Label x:Name="lblNote1" Content="1. You Must Fill Up all the Fields." HorizontalAlignment="Left" Margin="957,332,0,0" VerticalAlignment="Top" Width="295"/>
         <Label x:Name="lblNote2" Content="2. Username between 4 to 12 charachters And start with Alphabet." HorizontalAlignment="Left" Margin="957,367,0,0" VerticalAlignment="Top" Width="361"/>

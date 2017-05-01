@@ -44,14 +44,28 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\AddCustomerCommand.cs" />
     <Compile Include="Commands\AddEmployeeCommand.cs" />
+    <Compile Include="Commands\AddProductCommand.cs" />
     <Compile Include="Commands\ClearAddEmployeeFormCommand.cs" />
+    <Compile Include="Commands\DeletePopupMenuHomeCustomerTabCommand.cs" />
     <Compile Include="Commands\DeletePopupMenuHomeEmployeeTabCommand.cs" />
+    <Compile Include="Commands\DeleteProductCommand.cs" />
+    <Compile Include="Commands\EditeCustomerCommand.cs" />
     <Compile Include="Commands\EditEmployeeCommand.cs" />
+    <Compile Include="Commands\EditProductCommand.cs" />
+    <Compile Include="Commands\LoginCommand.cs" />
     <Compile Include="Commands\OpenFileInAddEmployeeTabCommand.cs" />
+    <Compile Include="Commands\OpenFileInEditEmployeeTabCommand.cs" />
+    <Compile Include="CustomerAddTabViewModel.cs" />
+    <Compile Include="CustomerEditTabViewModel.cs" />
+    <Compile Include="CustomerHomeTabViewModel.cs" />
     <Compile Include="EmployeeEditTabViewModel.cs" />
     <Compile Include="EmployeeHomeTabViewModel.cs" />
     <Compile Include="EmployeesAddTabViewModel.cs" />
+    <Compile Include="LoginViewModel.cs" />
+    <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="ProductViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

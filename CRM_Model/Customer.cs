@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CRM_Model
 {
-    public class Employee 
+    public class Customer
     {
         private int _Id;
         private string _Fname;
         private string _lname;
         private DateTime _BirthDate;
-        private DateTime _hiredDate;
+        private DateTime _RegisterDate;
         private int _StreetNo;
         private string _StreetName;
         private int _AppNo;
@@ -24,23 +23,15 @@ namespace CRM_Model
         private string _Country;
         private string _Email;
         private string _Phone;
-        private char _Rank;
-        private string _Title;
-        private decimal _SalaryPerHour;
-        private string _UserName;
-        private string _Password;
-        private byte[] _Image;
-
-
 
         /* Constractor */
-        public Employee(int id, string fname, string lname, DateTime birth, DateTime hire, int streetno, string streetname, int appno, string municipality, string city, string province, string postalcode, string country, string email, string phone, char rank, string title, decimal salary, string username, string password, byte[] image)
+        public Customer(int id, string fname, string lname, DateTime birth,DateTime regdate, int streetno, string streetname, int appno, string municipality, string city, string province, string postalcode, string country, string email, string phone)
         {
             Id = id;
             Fname = fname;
             Lname = lname;
             BirthDate = birth;
-            HiredDate = hire;
+            RegisterDate = regdate;
             StreetNo = streetno;
             StreetName = streetname;
             AppNo = appno;
@@ -51,17 +42,8 @@ namespace CRM_Model
             Country = country;
             Email = email;
             Phone = phone;
-            Rank = rank;
-            Title = title;
-            SalaryPerHour = salary;
-            UserName = username;
-            Password = password;
-            Image = image;
         }
-        public Employee()
-        {
 
-        }
 
         /* setter and getters */
         public int Id
@@ -72,7 +54,7 @@ namespace CRM_Model
         public string Fname
         {
             get { return _Fname; }
-            set{_Fname = value;  }
+            set { _Fname = value; }
         }
         public string Lname
         {
@@ -84,10 +66,10 @@ namespace CRM_Model
             get { return _BirthDate; }
             set { _BirthDate = value; }
         }
-        public DateTime HiredDate
+        public DateTime RegisterDate
         {
-            get { return _hiredDate; }
-            set { _hiredDate = value; }
+            get { return _RegisterDate; }
+            set { _RegisterDate = value; }
         }
         public int StreetNo
         {
@@ -107,22 +89,22 @@ namespace CRM_Model
         public string Municipality
         {
             get { return _Municipality; }
-            set { _Municipality = value;}
+            set { _Municipality = value; }
         }
         public string City
         {
             get { return _City; }
-            set { _City = value;}
+            set { _City = value; }
         }
         public string Province
         {
             get { return _Province; }
-            set { _Province = value;}
+            set { _Province = value; }
         }
         public string PostalCode
         {
             get { return _PostalCode; }
-            set {  _PostalCode = value;}
+            set { _PostalCode = value; }
         }
         public string Country
         {
@@ -139,36 +121,5 @@ namespace CRM_Model
             get { return _Phone; }
             set { _Phone = value; }
         }
-        public char Rank
-        {
-            get { return _Rank; }
-            set { _Rank = value; }
-        }
-        public string Title
-        {
-            get { return _Title; }
-            set { _Title = value; }
-        }
-        public decimal SalaryPerHour
-        {
-            get { return _SalaryPerHour; }
-            set { _SalaryPerHour = value; }
-        }
-        public string UserName
-        {
-            get { return _UserName; }
-            set {_UserName = value;}
-        }
-        public string Password
-        {
-            get { return _Password; }
-            set{ _Password = value;}
-        }
-        public byte[] Image
-        {
-            get { return _Image; }
-            set { _Image = value; }
-        }
-
     }
 }

@@ -145,5 +145,19 @@ namespace CRM_ExtraSelfDesignLibraries
             }
             return true;
         }
+        public bool IsValidDate(object value)
+        {
+            string inputString = (value ?? string.Empty).ToString();
+            DateTime date;
+            try
+            {
+                date = DateTime.Parse(inputString);
+            }
+            catch (FormatException ex)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }
